@@ -62,7 +62,7 @@ int C74_EXPORT main(void) {
 	class_addmethod(c, (method)myObj_dsp, "dsp", A_CANT, 0);
 	class_addmethod(c, (method)myObj_dsp64, "dsp64", A_CANT, 0);
 	class_addmethod(c, (method)myObj_float, "float", A_FLOAT, 0);
-	class_addmethod(c, (method)myObj_int, "int", A_FLOAT, 0);
+	class_addmethod(c, (method)myObj_int, "int", A_LONG, 0);
 	class_addmethod(c, (method)myObj_assist,"assist", A_CANT,0);
 	class_dspinit(c);
 	class_register(CLASS_BOX, c);

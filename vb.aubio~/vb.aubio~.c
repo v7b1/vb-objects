@@ -2,9 +2,11 @@
 #include "ext_obex.h"
 #include "z_dsp.h"
 #include "ext_common.h"
+#include "buffer.h"
 #include "ext_buffer.h"
 #include <aubio/aubio.h>
 
+#include <Accelerate/Accelerate.h>
 
 /*
 	using the aubio framework (Paul Brossier) for analyzing audio buffers
@@ -31,6 +33,8 @@ typedef struct {
 
 } t_myObj;
 
+
+t_symbol *ps_buffer_modified;
 
 static t_class *myObj_class;
 
@@ -92,6 +96,8 @@ int C74_EXPORT main(void) {
 	class_register(CLASS_BOX, c);
 	myObj_class = c;
 	
+	ps_buffer_modified = gensym("buffer_modified");
+	
 	post("vb.aubio~ using aubio 0.4.2 by Paul Brossier");
 	
 	return 0;
@@ -136,6 +142,7 @@ void do_onset(t_myObj *x)
 	smpl_t		is_onset;
 	fvec_t		*input, *onset;
 	aubio_onset_t *o;
+	float		rms, max;
 
 	
 	b = buffer_ref_getobject(x->bufref);
@@ -152,6 +159,16 @@ void do_onset(t_myObj *x)
 	frames = buffer_getframecount(b);		// buffer size in samples
 	nchnls = buffer_getchannelcount(b);		// number of channels
 	sr = buffer_getsamplerate(b);			// sampling rate
+	
+	
+	// calc overall RMS
+	t_buffer *bufstruct = (t_buffer *)b;
+	t_symbol *original_fname = bufstruct->b_filename;
+	vDSP_rmsqv(tab, nchnls, &rms, frames);
+	vDSP_maxmgv(tab, nchnls, &max, frames);
+	object_post((t_object*)x, "%s: rms: %f -- max: %f", original_fname->s_name, rms, max);
+	
+	//
 	
 	
 	// create some vectors
@@ -304,6 +321,27 @@ void myObj_dblclick(t_myObj *x)
 
 t_max_err myObj_notify(t_myObj *x, t_symbol *s, t_symbol *msg, void *sender, void *data)
 {
+	/*
+	post("notify message received!");
+	if (msg == ps_buffer_modified) {
+		post("buffer modified received!");
+		
+		t_symbol *bufname = (t_symbol *)object_method((t_object*)sender, gensym("getname"));
+		post("bufname: %s", bufname->s_name);
+		
+		
+		 t_buffer_obj *b = (t_buffer_obj *)data;
+		 post("channels: %d", buffer_getchannelcount(b));
+		t_buffer_info *info = NULL;
+		 t_max_err err = buffer_getinfo(b, info);
+		 post("err: %ld", err);
+		//post("nochmal channels: %d", info->b_nchans);
+		if(info) {
+			t_symbol *bname = info->b_name;
+			post("buffer name: %s", bname->s_name);
+		}
+		
+	}*/
 	return buffer_ref_notify(x->bufref, s, msg, sender, data);
 }
 
