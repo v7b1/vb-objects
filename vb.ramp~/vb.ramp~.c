@@ -15,12 +15,13 @@
 
 typedef struct {
 	t_pxobject x_obj;
-	long		count;
-	int		loop;
-	int		lup;			// only start looping if ramp is running
-	float		last_in;
-	double	period;
-	double	reci;
+	t_uint32		count;
+	int				loop;
+	int				lup;			// only start looping if ramp is running
+	float			last_in;
+	t_double		period;
+	t_double		reci;
+	short			sig_connected;
 
 } t_myObj;
 
@@ -98,7 +99,7 @@ void myObj_stop(t_myObj *x) {
 
 // 32-bit dsp method
 void myObj_dsp(t_myObj *x, t_signal **sp, short *count) {
-	
+	x->sig_connected = count[1];	// check if a signal is connected to the right inlet
 	dsp_add(myObj_perform, 6, x, sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec, sp[3]->s_vec, sp[0]->s_n);
 }
 
@@ -106,6 +107,7 @@ void myObj_dsp(t_myObj *x, t_signal **sp, short *count) {
 //64-bit dsp method
 void myObj_dsp64(t_myObj *x, t_object *dsp64, short *count, double samplerate, 
 				 long maxvectorsize, long flags) {
+	x->sig_connected = count[1];	// check if a signal is connected to the right inlet
 	object_method(dsp64, gensym("dsp_add64"), x, myObj_perform64, 0, NULL);
 }
 
@@ -123,12 +125,12 @@ t_int *myObj_perform(t_int *w) {
 	if (x->x_obj.z_disabled)
 		goto out;
 	
-	int		i;
+	int			i;
 	float		last_in = x->last_in;
 	float		input;
-	double	period = x->period;
-	double	reci = x->reci;
-	long		count = x->count;
+	double		period = x->period;
+	double		reci = x->reci;
+	t_uint32	count = x->count;
 
 
 	for(i=0; i<vs; i++) {
@@ -136,14 +138,16 @@ t_int *myObj_perform(t_int *w) {
 		if(input!=0 && last_in == 0) {
 			count = 0;
 			
-			if(in2[i]!=0) {
-				period = in2[i];
-				reci =  (1.0/period);
-				x->period = period;
-				x->reci = reci;
+			if(x->sig_connected) {
+				if(in2[i]!=0) {
+					period = in2[i];
+					reci =  (1.0/period);
+					x->period = period;
+					x->reci = reci;
+				}
+				else
+					reci = period = x->period = x->reci = 0;
 			}
-			else
-				reci = period = x->period = x->reci = 0;
 		}
 		
 		out2[i] = count * reci;
@@ -184,26 +188,27 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins,
 		return;
 
 	int i;
-	t_double	last_in = x->last_in;
-	t_double	input;
-	t_double	period = x->period;
-	t_double	reci = x->reci;
-	long	count = x->count;
+	t_double		last_in = x->last_in;
+	t_double		input;
+	t_double		period = x->period;
+	t_double		reci = x->reci;
+	t_uint32		count = x->count;
 	
 	
 	for(i=0; i<vs; i++) {
 		input = in[i];
-		if(input!=0 && last_in == 0) {
+		if( last_in == 0 && input != 0) {		// if we received a trigger signal in left inlet
 			count = 0;
 			
-			if(in2[i]>=0) {
-				period = in2[i];
-				reci =  (1.0/period);
-				x->period = period;
-				x->reci = reci;
-			}
-			else {
-				reci = period = x->period = x->reci = 0;
+			if(x->sig_connected) {
+				if(in2[i]!=0) {
+					period = in2[i];
+					reci =  (1.0/period);
+					x->period = period;
+					x->reci = reci;
+				}
+				else
+					reci = period = x->period = x->reci = 0;
 			}
 		}
 		
@@ -248,6 +253,7 @@ void *myObj_new( t_symbol *s, long argc, t_atom *argv )
 		if(period > 0) x->reci = 1/period;
 		else x->reci = 0;
 		x->loop = 0;
+		x->count = 0;
         
 		attr_args_process(x, argc, argv);			// process attributes
         
