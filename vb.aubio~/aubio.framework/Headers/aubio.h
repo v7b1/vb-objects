@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2003-2013 Paul Brossier <piem@aubio.org>
+  Copyright (C) 2003-2015 Paul Brossier <piem@aubio.org>
 
   This file is part of aubio.
 
@@ -18,18 +18,18 @@
 
 */
 
-/** \mainpage 
- 
+/** \mainpage
+
   \section introduction Introduction
- 
+
   aubio is a library to extract annotations from audio signals: it provides a
   set of functions that take an input audio signal, and output pitch estimates,
   attack times (onset), beat location estimates, and other annotation tasks.
- 
-  \section basics Basics 
- 
+
+  \section basics Basics
+
   All object structures in aubio share the same function prefixes and suffixes:
-  
+
     - \p new_aubio_foo creates the object \p foo
     - \p aubio_foo_do executes the object \p foo
     - \p del_aubio_foo destroys the object \p foo
@@ -37,7 +37,7 @@
   All memory allocation and deallocation take place in the \p new_ and \p del_
   functions. Optionally, more than one \p _do methods are available.
   Additional parameters can be adjusted and observed using:
-  
+
     - \p aubio_foo_get_param, getter function, gets the value of a parameter
     - \p aubio_foo_set_param, setter function, changes the value of a parameter
 
@@ -111,6 +111,15 @@
   Several examples of C programs are available in the \p examples/ and \p tests/src
   directories of the source tree.
 
+  Some examples:
+  - @ref spectral/test-fft.c
+  - @ref spectral/test-phasevoc.c
+  - @ref onset/test-onset.c
+  - @ref pitch/test-pitch.c
+  - @ref tempo/test-tempo.c
+  - @ref test-fvec.c
+  - @ref test-cvec.c
+
   \subsection unstable_api Unstable API
 
   Several more functions are available and used within aubio, but not
@@ -130,7 +139,7 @@
   \section download Download
 
   Latest versions, further documentation, examples, wiki, and mailing lists can
-  be found at http://aubio.org .
+  be found at https://aubio.org .
 
  */
 
@@ -173,20 +182,24 @@ extern "C"
 #include "temporal/a_weighting.h"
 #include "temporal/c_weighting.h"
 #include "spectral/fft.h"
+#include "spectral/dct.h"
 #include "spectral/phasevoc.h"
 #include "spectral/filterbank.h"
 #include "spectral/filterbank_mel.h"
 #include "spectral/mfcc.h"
 #include "spectral/specdesc.h"
+#include "spectral/awhitening.h"
 #include "spectral/tss.h"
 #include "pitch/pitch.h"
 #include "onset/onset.h"
 #include "tempo/tempo.h"
+#include "notes/notes.h"
 #include "io/source.h"
 #include "io/sink.h"
 #include "synth/sampler.h"
 #include "synth/wavetable.h"
 #include "utils/parameter.h"
+#include "utils/log.h"
 
 #if AUBIO_UNSTABLE
 #include "mathutils.h"
@@ -202,6 +215,7 @@ extern "C"
 #include "pitch/pitchmcomb.h"
 #include "pitch/pitchyin.h"
 #include "pitch/pitchyinfft.h"
+#include "pitch/pitchyinfast.h"
 #include "pitch/pitchschmitt.h"
 #include "pitch/pitchfcomb.h"
 #include "pitch/pitchspecacf.h"

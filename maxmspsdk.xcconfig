@@ -11,7 +11,7 @@
 
 // Name & Version
 PRODUCT_NAME = $(PROJECT_NAME)
-PRODUCT_VERSION = 6.1.4
+PRODUCT_VERSION = 7.0.1
 ARCHS = i386 x86_64
 
 
@@ -50,7 +50,7 @@ ARCHS = i386 x86_64
 // Xcode 4.3+
 // SDKROOT = macosx10.6
 
-MACOSX_DEPLOYMENT_TARGET = 10.6
+MACOSX_DEPLOYMENT_TARGET = 10.11
 
 
 // Compiler Version -- leave them all commented out to get the default version provided by Xcode

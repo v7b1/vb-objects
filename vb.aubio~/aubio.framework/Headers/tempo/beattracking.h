@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2003-2013 Matthew Davies and Paul Brossier <piem@aubio.org>
+  Copyright (C) 2003-2015 Matthew Davies and Paul Brossier <piem@aubio.org>
 
   This file is part of aubio.
 
@@ -31,13 +31,13 @@
 
   Matthew E. P. Davies, Paul Brossier, and Mark D. Plumbley. Beat tracking
   towards automatic musical accompaniment. In Proceedings of the Audio
-  Engeeniring Society 118th Convention, Barcelona, Spain, May 2005.
+  Engineering Society 118th Convention, Barcelona, Spain, May 2005.
 
   \example tempo/test-beattracking.c
-  
+
 */
-#ifndef _AUBIO_BEATTRACKING_H
-#define _AUBIO_BEATTRACKING_H
+#ifndef AUBIO_BEATTRACKING_H
+#define AUBIO_BEATTRACKING_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -49,23 +49,43 @@ typedef struct _aubio_beattracking_t aubio_beattracking_t;
 /** create beat tracking object
 
   \param winlen length of the onset detection window
-  \param hop_size number of onset detection samples [512] 
+  \param hop_size number of onset detection samples [512]
   \param samplerate samplerate of the input signal
 
 */
 aubio_beattracking_t * new_aubio_beattracking(uint_t winlen, uint_t hop_size,
     uint_t samplerate);
 
-/** track the beat 
+/** track the beat
 
   \param bt beat tracking object
   \param dfframes current input detection function frame, smoothed by
-  adaptive median threshold. 
-  \param out stored detected beat locations 
+  adaptive median threshold.
+  \param out stored detected beat locations
 
 */
-void aubio_beattracking_do (aubio_beattracking_t * bt, fvec_t * dfframes,
+void aubio_beattracking_do (aubio_beattracking_t * bt, const fvec_t * dfframes,
     fvec_t * out);
+
+/** get current beat period in samples
+
+  \param bt beat tracking object
+
+  Returns the currently observed period, in samples, or 0 if no consistent
+  value is found.
+
+*/
+smpl_t aubio_beattracking_get_period (const aubio_beattracking_t * bt);
+
+/** get current beat period in seconds
+
+  \param bt beat tracking object
+
+  Returns the currently observed period, in seconds, or 0 if no consistent
+  value is found.
+
+*/
+smpl_t aubio_beattracking_get_period_s (const aubio_beattracking_t * bt);
 
 /** get current tempo in bpm
 
@@ -75,9 +95,9 @@ void aubio_beattracking_do (aubio_beattracking_t * bt, fvec_t * dfframes,
   consistent value is found.
 
 */
-smpl_t aubio_beattracking_get_bpm(aubio_beattracking_t * bt);
+smpl_t aubio_beattracking_get_bpm(const aubio_beattracking_t * bt);
 
-/** get current tempo confidence 
+/** get current tempo confidence
 
   \param bt beat tracking object
 
@@ -85,7 +105,7 @@ smpl_t aubio_beattracking_get_bpm(aubio_beattracking_t * bt);
   consistent value is found.
 
 */
-smpl_t aubio_beattracking_get_confidence(aubio_beattracking_t * bt);
+smpl_t aubio_beattracking_get_confidence(const aubio_beattracking_t * bt);
 
 /** delete beat tracking object
 
@@ -98,4 +118,4 @@ void del_aubio_beattracking(aubio_beattracking_t * p);
 }
 #endif
 
-#endif /* _AUBIO_BEATTRACKING_H */
+#endif /* AUBIO_BEATTRACKING_H */

@@ -31,8 +31,8 @@
 
 */
 
-#ifndef _AUBIO_PHASEVOC_H
-#define _AUBIO_PHASEVOC_H
+#ifndef AUBIO_PHASEVOC_H
+#define AUBIO_PHASEVOC_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -56,28 +56,28 @@ aubio_pvoc_t * new_aubio_pvoc (uint_t win_s, uint_t hop_s);
 void del_aubio_pvoc(aubio_pvoc_t *pv);
 
 /** compute spectral frame
-  
+
   This function accepts an input vector of size [hop_s]. The
   analysis buffer is rotated and filled with the new data. After windowing of
   this signal window, the Fourier transform is computed and returned in
   fftgrain as two vectors, magnitude and phase.
 
   \param pv phase vocoder object as returned by new_aubio_pvoc
-  \param in new input signal (hop_s long) 
+  \param in new input signal (hop_s long)
   \param fftgrain output spectral frame
 
 */
-void aubio_pvoc_do(aubio_pvoc_t *pv, fvec_t *in, cvec_t * fftgrain);
+void aubio_pvoc_do(aubio_pvoc_t *pv, const fvec_t *in, cvec_t * fftgrain);
 /** compute signal from spectral frame
 
   This function takes an input spectral frame fftgrain of size
   [buf_s] and computes its inverse Fourier transform. Overlap-add
   synthesis is then computed using the previously synthetised frames, and the
   output stored in out.
-  
+
   \param pv phase vocoder object as returned by new_aubio_pvoc
   \param fftgrain input spectral frame
-  \param out output signal (hop_s long) 
+  \param out output signal (hop_s long)
 
 */
 void aubio_pvoc_rdo(aubio_pvoc_t *pv, cvec_t * fftgrain, fvec_t *out);
@@ -95,8 +95,18 @@ uint_t aubio_pvoc_get_win(aubio_pvoc_t* pv);
 */
 uint_t aubio_pvoc_get_hop(aubio_pvoc_t* pv);
 
+/** set window type
+
+  \param pv phase vocoder to set the window type
+  \param window_type a string representing a window
+
+  \return 0 if successful, non-zero otherwise
+
+ */
+uint_t aubio_pvoc_set_window(aubio_pvoc_t *pv, const char_t *window_type);
+
 #ifdef __cplusplus
 }
-#endif 
+#endif
 
-#endif /* _AUBIO_PHASEVOC_H */
+#endif /* AUBIO_PHASEVOC_H */

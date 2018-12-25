@@ -31,8 +31,8 @@
 
 */
 
-#ifndef _AUBIO_FILTERBANK_MEL_H
-#define _AUBIO_FILTERBANK_MEL_H
+#ifndef AUBIO_FILTERBANK_MEL_H
+#define AUBIO_FILTERBANK_MEL_H
 
 #ifdef __cplusplus
 extern "C"
@@ -50,7 +50,7 @@ extern "C"
 
 */
 uint_t aubio_filterbank_set_triangle_bands (aubio_filterbank_t * fb,
-    fvec_t * freqs, smpl_t samplerate);
+    const fvec_t * freqs, smpl_t samplerate);
 
 /** filterbank initialization for Mel filters using Slaney's coefficients
 
@@ -58,7 +58,7 @@ uint_t aubio_filterbank_set_triangle_bands (aubio_filterbank_t * fb,
   \param samplerate audio sampling rate
 
   The filter coefficients are built according to Malcolm Slaney's Auditory
-  Toolbox, available at http://cobweb.ecn.purdue.edu/~malcolm/interval/1998-010/
+  Toolbox, available at http://engineering.purdue.edu/~malcolm/interval/1998-010/
   (see file mfcc.m).
 
 */
@@ -69,4 +69,4 @@ uint_t aubio_filterbank_set_mel_coeffs_slaney (aubio_filterbank_t * fb,
 }
 #endif
 
-#endif /* _AUBIO_FILTERBANK_MEL_H */
+#endif /* AUBIO_FILTERBANK_MEL_H */

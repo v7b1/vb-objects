@@ -15,7 +15,7 @@
 /* Begin PBXFileReference section */
 		2FBBEAE508F335360078DB84 /* vb.ramp~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "vb.ramp~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3523B17117197C3500AAFD5C /* maxmspsdk.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = maxmspsdk.xcconfig; path = ../maxmspsdk.xcconfig; sourceTree = SOURCE_ROOT; };
-		3574E71B1B52EB340007D4B4 /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "/Users/vb/project-files/C-prog/MaxSDK-6.1.4/c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = "<absolute>"; };
+		3574E71B1B52EB340007D4B4 /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "../../../c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = SOURCE_ROOT; };
 		35E6E60617197E5C00CCAD02 /* vb.ramp~.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "vb.ramp~.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +87,8 @@
 /* Begin PBXProject section */
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = 2FBBEACF08F335010078DB84 /* Build configuration list for PBXProject "vb.ramp~" */;
 			compatibilityVersion = "Xcode 3.0";
 			developmentRegion = English;

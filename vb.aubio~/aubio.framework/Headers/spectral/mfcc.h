@@ -21,14 +21,21 @@
 
 /** \file
 
-  Mel-frequency cepstrum coefficients object
+  Mel-Frequency Cepstrum Coefficients object
+
+  This object computes MFCC coefficients on an input cvec_t.
+
+  The implementation follows the specifications established by Malcolm Slaney
+  in its Auditory Toolbox, available online (see file mfcc.m).
+
+  http://engineering.ecn.purdue.edu/~malcolm/interval/1998-010/
 
   \example spectral/test-mfcc.c
 
 */
 
-#ifndef _AUBIO_MFCC_H
-#define _AUBIO_MFCC_H
+#ifndef AUBIO_MFCC_H
+#define AUBIO_MFCC_H
 
 #ifdef __cplusplus
 extern "C"
@@ -63,10 +70,10 @@ void del_aubio_mfcc (aubio_mfcc_t * mf);
   \param out output mel coefficients buffer (n_coeffs long)
 
 */
-void aubio_mfcc_do (aubio_mfcc_t * mf, cvec_t * in, fvec_t * out);
+void aubio_mfcc_do (aubio_mfcc_t * mf, const cvec_t * in, fvec_t * out);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _AUBIO_MFCC_H */
+#endif /* AUBIO_MFCC_H */

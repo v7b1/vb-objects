@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2003-2013 Paul Brossier <piem@aubio.org>
+  Copyright (C) 2003-2015 Paul Brossier <piem@aubio.org>
 
   This file is part of aubio.
 
@@ -18,8 +18,8 @@
 
 */
 
-#ifndef _AUBIO__CVEC_H
-#define _AUBIO__CVEC_H
+#ifndef AUBIO_CVEC_H
+#define AUBIO_CVEC_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -150,7 +150,7 @@ smpl_t cvec_phas_get_sample (cvec_t *s, uint_t position);
   \param s vector to read from
 
 */
-smpl_t * cvec_norm_get_data (cvec_t *s);
+smpl_t * cvec_norm_get_data (const cvec_t *s);
 
 /** read phase data from a complex buffer
 
@@ -162,14 +162,14 @@ smpl_t * cvec_norm_get_data (cvec_t *s);
   \param s vector to read from
 
 */
-smpl_t * cvec_phas_get_data (cvec_t *s);
+smpl_t * cvec_phas_get_data (const cvec_t *s);
 
 /** print out cvec data
 
   \param s vector to print out
 
 */
-void cvec_print(cvec_t *s);
+void cvec_print(const cvec_t *s);
 
 /** make a copy of a vector
 
@@ -177,7 +177,7 @@ void cvec_print(cvec_t *s);
   \param t vector to copy to
 
 */
-void cvec_copy(cvec_t *s, cvec_t *t);
+void cvec_copy(const cvec_t *s, cvec_t *t);
 
 /** set all norm elements to a given value
 
@@ -230,8 +230,18 @@ void cvec_phas_ones(cvec_t *s);
 */
 void cvec_zeros(cvec_t *s);
 
+/** take logarithmic magnitude
+
+  \param s input cvec to compress
+  \param lambda value to use for normalisation
+
+  \f$ S_k = log( \lambda * S_k + 1 ) \f$
+
+*/
+void cvec_logmag(cvec_t *s, smpl_t lambda);
+
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _AUBIO__CVEC_H */
+#endif /* AUBIO_CVEC_H */

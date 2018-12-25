@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2003-2014 Paul Brossier <piem@aubio.org>
+  Copyright (C) 2003-2015 Paul Brossier <piem@aubio.org>
 
   This file is part of aubio.
 
@@ -27,8 +27,8 @@
 
  */
 
-#ifndef _AUBIO_MATHUTILS_H
-#define _AUBIO_MATHUTILS_H
+#ifndef AUBIO_MATHUTILS_H
+#define AUBIO_MATHUTILS_H
 
 #include "fvec.h"
 #include "musicutils.h"
@@ -82,22 +82,51 @@ uint_t fvec_min_elem (fvec_t * s);
 uint_t fvec_max_elem (fvec_t * s);
 
 /** swap the left and right halves of a vector
-  
+
   This function swaps the left part of the signal with the right part of the
 signal. Therefore
 
   \f$ a[0], a[1], ..., a[\frac{N}{2}], a[\frac{N}{2}+1], ..., a[N-1], a[N] \f$
-  
+
   becomes
-  
+
   \f$ a[\frac{N}{2}+1], ..., a[N-1], a[N], a[0], a[1], ..., a[\frac{N}{2}] \f$
 
   This operation, known as 'fftshift' in the Matlab Signal Processing Toolbox,
 can be used before computing the FFT to simplify the phase relationship of the
 resulting spectrum. See Amalia de Götzen's paper referred to above.
-  
+
 */
 void fvec_shift (fvec_t * v);
+
+/** swap the left and right halves of a vector
+
+  This function swaps the left part of the signal with the right part of the
+signal. Therefore
+
+  \f$ a[0], a[1], ..., a[\frac{N}{2}], a[\frac{N}{2}+1], ..., a[N-1], a[N] \f$
+
+  becomes
+
+  \f$ a[\frac{N}{2}+1], ..., a[N-1], a[N], a[0], a[1], ..., a[\frac{N}{2}] \f$
+
+  This operation, known as 'ifftshift' in the Matlab Signal Processing Toolbox,
+can be used after computing the inverse FFT to simplify the phase relationship
+of the resulting spectrum. See Amalia de Götzen's paper referred to above.
+
+*/
+void fvec_ishift (fvec_t * v);
+
+/** push a new element to the end of a vector, erasing the first element and
+ * sliding all others
+
+  \param in vector to push to
+  \param new_elem new_element to add at the end of the vector
+
+  In numpy words, this is equivalent to: in = np.concatenate([in, [new_elem]])[1:]
+
+*/
+void fvec_push(fvec_t *in, smpl_t new_elem);
 
 /** compute the sum of all elements of a vector
 
@@ -111,20 +140,20 @@ smpl_t fvec_sum (fvec_t * v);
 /** compute the High Frequency Content of a vector
 
   The High Frequency Content is defined as \f$ \sum_0^{N-1} (k+1) v[k] \f$.
- 
-  \param v vector to get the energy from 
+
+  \param v vector to get the energy from
 
   \return the HFC of v
- 
+
 */
 smpl_t fvec_local_hfc (fvec_t * v);
 
-/** computes the p-norm of a vector 
- 
+/** computes the p-norm of a vector
+
   Computes the p-norm of a vector for \f$ p = \alpha \f$
 
   \f$ L^p = ||x||_p = (|x_1|^p + |x_2|^p + ... + |x_n|^p ) ^ \frac{1}{p} \f$
-  
+
   If p = 1, the result is the Manhattan distance.
 
   If p = 2, the result is the Euclidean distance.
@@ -133,7 +162,7 @@ smpl_t fvec_local_hfc (fvec_t * v);
 input vector.
 
   References:
-  
+
     - <a href="http://en.wikipedia.org/wiki/Lp_space">\f$L^p\f$ space</a> on
   Wikipedia
 
@@ -141,13 +170,13 @@ input vector.
   \param p order of the computed norm
 
   \return the p-norm of v
- 
+
 */
 smpl_t fvec_alpha_norm (fvec_t * v, smpl_t p);
 
 /**  alpha normalisation
 
-  This function divides all elements of a vector by the p-norm as computed by 
+  This function divides all elements of a vector by the p-norm as computed by
 fvec_alpha_norm().
 
   \param v vector to compute norm from
@@ -165,7 +194,7 @@ void fvec_alpha_normalise (fvec_t * v, smpl_t p);
 void fvec_add (fvec_t * v, smpl_t c);
 
 /** remove the minimum value of the vector to each elements
-  
+
   \param v vector to remove minimum from
 
 */
@@ -176,14 +205,14 @@ void fvec_min_removal (fvec_t * v);
   This function computes the moving median threshold value of at the given
 position of a vector, taking the median among post elements before and up to
 pre elements after pos.
- 
+
   \param v input vector
   \param tmp temporary vector of length post+1+pre
-  \param post length of causal part to take before pos 
+  \param post length of causal part to take before pos
   \param pre length of anti-causal part to take after pos
-  \param pos index to compute threshold for 
+  \param pos index to compute threshold for
 
-  \return moving median threshold value 
+  \return moving median threshold value
 
 */
 smpl_t fvec_moving_thres (fvec_t * v, fvec_t * tmp, uint_t post, uint_t pre,
@@ -196,13 +225,13 @@ moving median threshold computed at p.
 
   \param v input vector
   \param tmp temporary vector of length post+1+pre
-  \param post length of causal part to take before pos 
+  \param post length of causal part to take before pos
   \param pre length of anti-causal part to take after pos
 
 */
 void fvec_adapt_thres (fvec_t * v, fvec_t * tmp, uint_t post, uint_t pre);
 
-/** returns the median of a vector 
+/** returns the median of a vector
 
   The QuickSelect routine is based on the algorithm described in "Numerical
 recipes in C", Second Edition, Cambridge University Press, 1992, Section 8.5,
@@ -215,7 +244,7 @@ and in the Public Domain.
   \param v vector to get median from
 
   \return the median of v
- 
+
 */
 smpl_t fvec_median (fvec_t * v);
 
@@ -232,7 +261,7 @@ smpl_t fvec_median (fvec_t * v);
   \return \f$ p + p_{frac} \f$ exact peak position of interpolated maximum or minimum
 
 */
-smpl_t fvec_quadratic_peak_pos (fvec_t * x, uint_t p);
+smpl_t fvec_quadratic_peak_pos (const fvec_t * x, uint_t p);
 
 /** finds magnitude of peak by quadratic interpolation
 
@@ -248,13 +277,13 @@ smpl_t fvec_quadratic_peak_pos (fvec_t * x, uint_t p);
 smpl_t fvec_quadratic_peak_mag (fvec_t * x, smpl_t p);
 
 /** Quadratic interpolation using Lagrange polynomial.
- 
+
   Inspired from ``Comparison of interpolation algorithms in real-time sound
-processing'', Vladimir Arnost, 
-  
-  \param s0,s1,s2 are 3 consecutive samples of a curve 
+processing'', Vladimir Arnost,
+
+  \param s0,s1,s2 are 3 consecutive samples of a curve
   \param pf is the floating point index [0;2]
- 
+
   \return \f$ s0 + (pf/2.)*((pf-3.)*s0-2.*(pf-2.)*s1+(pf-1.)*s2); \f$
 
 */
@@ -275,7 +304,7 @@ peak is defined as follows:
   \return 1 if a peak is found, 0 otherwise
 
 */
-uint_t fvec_peakpick (fvec_t * v, uint_t p);
+uint_t fvec_peakpick (const fvec_t * v, uint_t p);
 
 /** return 1 if a is a power of 2, 0 otherwise */
 uint_t aubio_is_power_of_two(uint_t a);
@@ -283,16 +312,19 @@ uint_t aubio_is_power_of_two(uint_t a);
 /** return the next power of power of 2 greater than a */
 uint_t aubio_next_power_of_two(uint_t a);
 
+/** return the log2 factor of the given power of 2 value a */
+uint_t aubio_power_of_two_order(uint_t a);
+
 /** compute normalised autocorrelation function
 
   \param input vector to compute autocorrelation from
   \param output vector to store autocorrelation function to
 
 */
-void aubio_autocorr (fvec_t * input, fvec_t * output);
+void aubio_autocorr (const fvec_t * input, fvec_t * output);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _AUBIO_MATHUTILS_H */
+#endif /* AUBIO_MATHUTILS_H */

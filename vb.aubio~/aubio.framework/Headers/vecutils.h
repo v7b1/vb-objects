@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2009-2013 Paul Brossier <piem@aubio.org>
+  Copyright (C) 2009-2015 Paul Brossier <piem@aubio.org>
 
   This file is part of aubio.
 
@@ -24,8 +24,8 @@
 
  */
 
-#ifndef _AUBIO__VECUTILS_H
-#define _AUBIO__VECUTILS_H
+#ifndef AUBIO_VECUTILS_H
+#define AUBIO_VECUTILS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -113,4 +113,4 @@ void fvec_pow (fvec_t *s, smpl_t pow);
 }
 #endif
 
-#endif /* _AUBIO__VECUTILS_H */
+#endif /* AUBIO_VECUTILS_H */

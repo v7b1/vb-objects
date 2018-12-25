@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2003-2013 Paul Brossier <piem@aubio.org>
+  Copyright (C) 2003-2015 Paul Brossier <piem@aubio.org>
 
   This file is part of aubio.
 
@@ -18,16 +18,16 @@
 
 */
 
-#ifndef _AUBIO_RESAMPLER_H
-#define _AUBIO_RESAMPLER_H
+#ifndef AUBIO_RESAMPLER_H
+#define AUBIO_RESAMPLER_H
 
 /** \file
- 
+
  Resampling object
 
  This object resamples an input vector into an output vector using
  libsamplerate. See http://www.mega-nerd.com/SRC/
- 
+
 */
 
 #ifdef __cplusplus
@@ -37,9 +37,9 @@ extern "C" {
 /** resampler object */
 typedef struct _aubio_resampler_t aubio_resampler_t;
 
-/** create resampler object 
+/** create resampler object
 
-  \param ratio output_sample_rate / input_sample_rate 
+  \param ratio output_sample_rate / input_sample_rate
   \param type libsamplerate resampling type, see http://www.mega-nerd.com/SRC/api_misc.html#Converters
 
 */
@@ -55,11 +55,11 @@ void del_aubio_resampler (aubio_resampler_t * s);
   \param output output buffer of size N*ratio
 
 */
-void aubio_resampler_do (aubio_resampler_t * s, fvec_t * input,
+void aubio_resampler_do (aubio_resampler_t * s, const fvec_t * input,
     fvec_t * output);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _AUBIO_RESAMPLER_H */
+#endif /* AUBIO_RESAMPLER_H */
