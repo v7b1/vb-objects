@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 2,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 539.0, 79.0, 1038.0, 694.0 ],
+		"rect" : [ 539.0, 79.0, 1034.0, 886.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -105,7 +105,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 863.0, 83.0, 150.0, 87.0 ],
+					"patching_rect" : [ 862.0, 81.0, 150.0, 87.0 ],
 					"text" : "while you can use lower case letters for key values, they will be converted to upper case when writing the file to disk."
 				}
 
@@ -467,8 +467,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 247.0, 470.0, 45.0, 22.0 ],
-					"text" : "10"
+					"patching_rect" : [ 247.0, 470.0, 45.0, 22.0 ]
 				}
 
 			}
@@ -481,8 +480,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 211.0, 470.0, 31.0, 22.0 ],
-					"text" : "1"
+					"patching_rect" : [ 211.0, 470.0, 31.0, 22.0 ]
 				}
 
 			}
@@ -495,8 +493,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 143.0, 470.0, 49.0, 22.0 ],
-					"text" : "44100"
+					"patching_rect" : [ 143.0, 470.0, 49.0, 22.0 ]
 				}
 
 			}
@@ -509,8 +506,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 110.0, 470.0, 32.0, 22.0 ],
-					"text" : "706"
+					"patching_rect" : [ 110.0, 470.0, 32.0, 22.0 ]
 				}
 
 			}
@@ -552,8 +548,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 46.0, 95.0, 197.0, 21.0 ],
-					"text" : "read /Users/vb/Music/xxx/A-string.mp3"
+					"patching_rect" : [ 46.0, 95.0, 95.0, 21.0 ],
+					"text" : "read A-string.mp3"
 				}
 
 			}
@@ -570,7 +566,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1036,7 +1032,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 247.0, 90.0, 138.0, 31.0 ],
+					"patching_rect" : [ 145.0, 90.0, 138.0, 31.0 ],
 					"text" : "open a media file for read/write access"
 				}
 
