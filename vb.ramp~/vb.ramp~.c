@@ -182,7 +182,7 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins,
 	t_double *in2 = ins[1];
 	t_double *out = outs[0];	
 	t_double *out2 = outs[1];	
-	int vs = sampleframes;		
+	long vs = sampleframes;		
 
 	if (x->x_obj.z_disabled)
 		return;

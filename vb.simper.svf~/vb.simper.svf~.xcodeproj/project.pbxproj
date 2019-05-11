@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3574E71C1B52EB340007D4B4 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3574E71B1B52EB340007D4B4 /* MaxAudioAPI.framework */; };
-		35E6E60717197E5C00CCAD02 /* vb.ramp~.c in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E60617197E5C00CCAD02 /* vb.ramp~.c */; };
+		358694FE17197CD4003806A2 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358694FD17197CD4003806A2 /* MaxAudioAPI.framework */; };
+		35E8F11A18096F45004113BB /* vb.simper.svf~.c in Sources */ = {isa = PBXBuildFile; fileRef = 35E8F11918096F45004113BB /* vb.simper.svf~.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2FBBEAE508F335360078DB84 /* vb.ramp~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "vb.ramp~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FBBEAE508F335360078DB84 /* vb.simper.svf~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "vb.simper.svf~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3523B17117197C3500AAFD5C /* maxmspsdk.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = maxmspsdk.xcconfig; path = ../maxmspsdk.xcconfig; sourceTree = SOURCE_ROOT; };
-		3574E71B1B52EB340007D4B4 /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "../../../c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = SOURCE_ROOT; };
-		35E6E60617197E5C00CCAD02 /* vb.ramp~.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "vb.ramp~.c"; sourceTree = "<group>"; };
+		358694FD17197CD4003806A2 /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "/Users/vb/project-files/C-prog/MaxSDK-6.1.1/c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = "<absolute>"; };
+		35E8F11918096F45004113BB /* vb.simper.svf~.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "vb.simper.svf~.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -23,7 +23,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3574E71C1B52EB340007D4B4 /* MaxAudioAPI.framework in Frameworks */,
+				358694FE17197CD4003806A2 /* MaxAudioAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,10 +33,10 @@
 		089C166AFE841209C02AAC07 /* iterator */ = {
 			isa = PBXGroup;
 			children = (
-				35E6E60617197E5C00CCAD02 /* vb.ramp~.c */,
+				35E8F11918096F45004113BB /* vb.simper.svf~.c */,
 				3523B17117197C3500AAFD5C /* maxmspsdk.xcconfig */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
-				3574E71B1B52EB340007D4B4 /* MaxAudioAPI.framework */,
+				358694FD17197CD4003806A2 /* MaxAudioAPI.framework */,
 			);
 			name = iterator;
 			sourceTree = "<group>";
@@ -44,7 +44,7 @@
 		19C28FB4FE9D528D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2FBBEAE508F335360078DB84 /* vb.ramp~.mxo */,
+				2FBBEAE508F335360078DB84 /* vb.simper.svf~.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,7 +78,7 @@
 			);
 			name = "max-external";
 			productName = iterator;
-			productReference = 2FBBEAE508F335360078DB84 /* vb.ramp~.mxo */;
+			productReference = 2FBBEAE508F335360078DB84 /* vb.simper.svf~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -89,7 +89,7 @@
 			attributes = {
 				LastUpgradeCheck = 0920;
 			};
-			buildConfigurationList = 2FBBEACF08F335010078DB84 /* Build configuration list for PBXProject "vb.ramp~" */;
+			buildConfigurationList = 2FBBEACF08F335010078DB84 /* Build configuration list for PBXProject "vb.simper.svf~" */;
 			compatibilityVersion = "Xcode 3.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -133,7 +133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35E6E60717197E5C00CCAD02 /* vb.ramp~.c in Sources */,
+				35E8F11A18096F45004113BB /* vb.simper.svf~.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +232,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2FBBEACF08F335010078DB84 /* Build configuration list for PBXProject "vb.ramp~" */ = {
+		2FBBEACF08F335010078DB84 /* Build configuration list for PBXProject "vb.simper.svf~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2FBBEAD008F335010078DB84 /* Development */,

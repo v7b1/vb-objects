@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2FBBEAD608F335360078DB84"
-               BuildableName = "vb.ramp~.mxo"
+               BuildableName = "vb.simper.svf~.mxo"
                BlueprintName = "max-external"
-               ReferencedContainer = "container:vb.ramp~.xcodeproj">
+               ReferencedContainer = "container:vb.simper.svf~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,7 +34,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Deployment"
+      buildConfiguration = "Development"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = ""
@@ -48,9 +48,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2FBBEAD608F335360078DB84"
-            BuildableName = "vb.ramp~.mxo"
+            BuildableName = "vb.simper.svf~.mxo"
             BlueprintName = "max-external"
-            ReferencedContainer = "container:vb.ramp~.xcodeproj">
+            ReferencedContainer = "container:vb.simper.svf~.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
