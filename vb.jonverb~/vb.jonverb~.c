@@ -15,7 +15,7 @@
 	J. Audio Eng. Soc, Vol. 45 No 9, 1997
  
 	author: Volker Böhm, April 2013
-	http://vboehm.net
+	https://vboehm.net
  
  */
 
@@ -41,9 +41,6 @@ void myObj_clear(t_myObj *x);
 // custom attr setter
 t_max_err myObj_inputbw_set(t_myObj *x, t_object *attr, long argc, t_atom *argv);
 
-void myObj_dsp(t_myObj *x, t_signal **sp, short *count);
-t_int *myObj_perform(t_int *w);
-
 void myObj_dsp64(t_myObj *x, t_object *dsp64, short *count, double samplerate, 
 				 long maxvectorsize, long flags);
 void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins, double **outs, 
@@ -64,7 +61,6 @@ int C74_EXPORT main(void) {
 	class_addmethod(c, (method)myObj_set_damping, "ft2", A_FLOAT, 0);
 	class_addmethod(c, (method)myObj_set_decay, "ft1", A_FLOAT, 0);
 	class_addmethod(c, (method)myObj_clear, "clear", 0);
-	class_addmethod(c, (method)myObj_dsp, "dsp", A_CANT, 0);
 	class_addmethod(c, (method)myObj_dsp64, "dsp64", A_CANT, 0);
 	class_addmethod(c, (method)myObj_assist,"assist", A_CANT,0);
 	class_dspinit(c);
@@ -95,7 +91,7 @@ int C74_EXPORT main(void) {
 	myObj_class = c;
 	
 	
-	post("vb.jonverb~ by volker böhm - version 1.0.0 -- http://vboehm.net");
+	post("vb.jonverb~ by volker böhm - version 1.0.1 -- https://vboehm.net");
 	
 	return 0;
 }
@@ -145,117 +141,6 @@ void myObj_clear(t_myObj *x) {
 
 
 #pragma mark dsp routines -----------
-void myObj_dsp(t_myObj *x, t_signal **sp, short *count) 
-{		
-	dsp_add(myObj_perform, 5, x, sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec, sp[0]->s_n);
-	
-	if(sp[0]->s_sr>0)
-		x->rate = sp[0]->s_sr;	
-	else x->rate = 44100.0;
-	
-}
-
-
-t_int *myObj_perform(t_int *w) 
-{
-	t_myObj *x = (t_myObj*)(w[1]);
-	float *in = (float *)(w[2]);
-	float *outL = (float *)(w[3]);
-	float *outR = (float *)(w[4]);
-	int vs = w[5];
-	int i, k;
-	double input, sumL, sumR, fbL, fbR, fbholdL;
-	double decay, erfl_gain, tail_gain;
-	
-	if (x->b_ob.z_disabled)
-		goto out;
-	
-	fbL = x->fbL;
-	fbR = x->fbR;
-	erfl_gain = x->erfl_gain;
-	tail_gain = x->tail_gain;
-	tail_gain *= tail_gain;	// make it a little softer...
-	decay = x->decay;
-	sumL = sumR = 0.;
-	g_damper *inputDamper = x->inputDamper;
-	g_diffuser **inputDiffs = x->inputDiffusers;
-	g_diffuser **decayDiffs1 = x->decayDiffusers1;
-	g_diffuser **decayDiffs2 = x->decayDiffusers2;
-	g_tapdelay **tapDelays = x->tapdelays;
-	
-	// kick in some noise to keep denormals away
-	i=0;
-	while(i<vs) {
-		in[i] += FLT_EPSILON;
-		i += NOISEINJECT;
-	}
-	
-	damper_do_block32(inputDamper, in, vs);				// input damping
-	
-	for(k=0; k<DIFFORDER; k++) {						// diffusors (allpass filters)
-		diffuser_do_block32(inputDiffs[k], in, vs);
-	}
-	
-	// tail
-	for(i=0; i<vs; i++) {
-		 
-		sumL = sumR = 0.;
-		input = in[i];
-		fbL += input;		// cross channel feedback
-		fbR += input;
-		
-		// first decay defuser (should be modulated in the end)
-		fbL = diffuser_do(decayDiffs1[0], fbL);
-		fbR = diffuser_do(decayDiffs1[1], fbR);
-		
-		// first fixed delay with tap outputs (+ freq dependent damping)
-		fbL = tapdelay1_do_left(tapDelays[0], fbL, &sumL, &sumR);
-		fbR = tapdelay1_do_right(tapDelays[1], fbR, &sumL, &sumR);
-		
-		// freq independent feedback control
-		fbL *= decay;						
-		fbR *= decay;
-		
-		/*
-#ifdef DENORM_WANT_FIX
-		if (IS_DENORM_NAN_DOUBLE(fbL)) {		
-			 post("dsp-loop: fbL---> DENORM or NAN!");
-		 }
-		FIX_DENORM_NAN_DOUBLE(fbL);
-		
-		if (IS_DENORM_NAN_DOUBLE(fbR)) {		
-			post("dsp-loop: fbR---> DENORM or NAN!");
-		}
-		FIX_DENORM_NAN_DOUBLE(fbR);
-#endif
-		*/
-		
-		// second decay diffusers + tap outputs
-		fbL = diffuser_do_decay(decayDiffs2[0], fbL, &sumL, &sumR);
-		fbR = diffuser_do_decay(decayDiffs2[1], fbR, &sumL, &sumR);
-		
-		// second fixed delay with tap outputs
-		fbL = tapdelay2_do_left(tapDelays[2], fbL, &sumL, &sumR);
-		fbR = tapdelay2_do_right(tapDelays[3], fbR, &sumL, &sumR);
-		
-		
-		// levels and output
-		input *= erfl_gain;
-		*(outL++) = sumL*tail_gain + input;
-		*(outR++) = sumR*tail_gain + input;
-
-		// cross channel feedback
-		fbholdL = fbL;
-		fbL = fbR;		
-		fbR = fbholdL;
-	}
-	
-	x->fbL = fbL;
-	x->fbR = fbR;
-out:	
-	return w+6;
-}
-
 
 void myObj_dsp64(t_myObj *x, t_object *dsp64, short *count, double samplerate, 
 				 long maxvectorsize, long flags) {
@@ -273,7 +158,7 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins, dou
 	t_double *in = ins[0];
 	t_double *outL = outs[0];	
 	t_double *outR = outs[1];
-	int vs = sampleframes;		
+	int vs = (int)sampleframes;
 	int i, k;
 	double input, sumL, sumR, fbL, fbR, fbholdL;
 	double decay, erfl_gain, tail_gain;
@@ -341,15 +226,6 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins, dou
 		*(outL++) = sumL*tail_gain + input;
 		*(outR++) = sumR*tail_gain + input;
 		
-		/*
-		
-#ifdef DENORM_WANT_FIX
-		
-		if (IS_DENORM_NAN_DOUBLE(outL[i])) {		
-			post("dsploop: outL ---> DENORM or NAN!");
-		}
-#endif
-		 */
 		
 		// cross channel feedback
 		fbholdL = fbL;
@@ -360,9 +236,6 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins, dou
 	x->fbL = fbL;
 	x->fbR = fbR;
 	
-	
-	return;
-
 }
 
 
@@ -389,11 +262,31 @@ void myObj_assist(t_myObj *x, void *b, long m, long a, char *s) {
 
 void *myObj_new(t_symbol *s, long argc, t_atom *argv) 
 {
+    // original sampling rate as stated in Dattoros paper was: 29761 Hz
+    // delay times:
+    // @ 29761 Hz -> @ 44100 kHz    // TODO: make this current SR dependent
+    // --- left out
+    // 266  ->  394     node: 48
+    // 2974 ->  4407    node: 48
+    // 1913 ->  2835        node: 55_59
+    // 1996 ->  2958    node: 59
+    // 1990 ->  2949    node: 24
+    // 187  ->  277         node: 31_33
+    // 1066 ->  1580    node: 33
+    // --- right out
+    // 353  ->  523     node: 24
+    // 3627 ->  5375    node: 24
+    // 1228 ->  1820        node: 31_33
+    // 2673 ->  3961    node: 33
+    // 2111 ->  3128    node: 48
+    // 335  ->  496         node: 55_59
+    // 121  ->  179     node: 59
+    
 	//fixed delay taps
-	int taps0[4] = {6598, 2949, 523, 5375};
-	int taps1[4] = {6249, 394, 4407, 3128};
-	int taps2[4] = {5512, 1580, 3961, 0};
-	int taps3[4] = {4687, 2958, 179, 0};
+    int taps0[4] = {6598, 2949, 523, 5375}; // node: 24_30
+    int taps1[4] = {6249, 394, 4407, 3128}; // node: 48_54
+    int taps2[4] = {5512, 1580, 3961, 0};   // node: 33
+    int taps3[4] = {4687, 2958, 179, 0};    // node: 59
 	
 	// allpass delay taps
 	int difftaps0[3] = {210, 0, 0};
@@ -402,12 +295,14 @@ void *myObj_new(t_symbol *s, long argc, t_atom *argv)
 	int difftaps3[3] = {410, 0, 0};
 	int difftaps4[3] = {996, 0, 0};
 	int difftaps5[3] = {1345, 0, 0};
-	int difftaps6[3] = {2667, 277, 1820};
-	int difftaps7[3] = {3936, 2835, 496};
+    int difftaps6[3] = {2667, 277, 1820};   // node: 31_33
+    int difftaps7[3] = {3936, 2835, 496};   // node: 55_59
 	
 	t_myObj *x = NULL;
 	
-	if( x = (t_myObj *)object_alloc(myObj_class) ) {
+    x = (t_myObj *)object_alloc(myObj_class);
+    
+	if( x ) {
 		
 		dsp_setup((t_pxobject*)x, 1);				// one signal inlet
 		outlet_new((t_pxobject *)x, "signal");		// two signal outlets

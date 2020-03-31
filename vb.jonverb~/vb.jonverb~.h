@@ -7,8 +7,8 @@ typedef struct {
 
 typedef struct {
 	int size;			// max size of delay line (MUST BE POWER OF 2)
-	int wrap;		// needed for efficient(?) wraping
-	int tap[3];		// actual delay time of allpass filter
+	int wrap;		    // needed for efficient(?) wraping
+	int tap[3];		    // actual delay time of allpass filter
 	int idx;			// write pointer
 	double coeff;
 	double *buf;		// sample storage
@@ -48,42 +48,8 @@ double damper_do(g_damper *p, double x)
 	double y;
 	y = x*(1.0-p->damping) + p->y*p->damping;
 	
-	/*
-#ifdef DENORM_WANT_FIX
-	if (IS_DENORM_NAN_DOUBLE(y)) {
-		post("damper_do: y --> DENORM or NAN!");
-	}
-	FIX_DENORM_DOUBLE(y);
-#endif
-	*/
 	p->y = y;
 	return(y);
-}
-
-void damper_do_block32(g_damper *p, float *vec, int vecsize)
-{ 
-	int i;
-	float coef2= p->damping;
-	float coef1 = 1-coef2;
-	float y = p->y;
-	
-	for(i=0; i<vecsize; i++) 
-	 {
-		y = vec[i]*coef1+ (y*coef2);	
-		/*
-#ifdef DENORM_WANT_FIX
-		
-		if (IS_DENORM_NAN_FLOAT(y)) {		
-			post("damper_do_block: y---> DENORM or NAN!");
-		}
-		FIX_DENORM_NAN_FLOAT(y);
-#endif
-		*/
-		vec[i] = y;				
-	 }
-	
-	p->y = y;
-	
 }
 
 
@@ -97,11 +63,7 @@ void damper_do_block(g_damper *p, double *vec, int vecsize)
 	for(i=0; i<vecsize; i++) 
 	 {
 		y = vec[i]*coef1+ (y*coef2);		// achtung --> denorms!
-		/*
-#ifdef DENORM_WANT_FIX
-		FIX_DENORM_NAN_DOUBLE(y);
-#endif
-		*/
+
 		vec[i] = y;				
 	}
 	
@@ -144,73 +106,14 @@ double diffuser_do(g_diffuser *p, double x)
 	coeff = p->coeff;
 	
 	v = x - delayed*coeff;
-	/*
-#ifdef DENORM_WANT_FIX
-	if (IS_DENORM_NAN_DOUBLE(v)) {
-		post("diffuser_do: v-->DENORM or NAN!");
-	}
-	FIX_DENORM_DOUBLE(v);
-#endif
-	 */
 	y = delayed + v*coeff;
-	/*
-#ifdef DENORM_WANT_FIX
-	if (IS_DENORM_NAN_DOUBLE(y)) {
-		post("diffuser_do: y-->DENORM or NAN!");
-	}
-	FIX_DENORM_DOUBLE(y);
-#endif
-	 */
+
 	p->buf[writep] = v;
 	writep = (writep+1)&wrap;
 	
 	p->idx = writep;
 	return(y);
 }
-
-
-
-void diffuser_do_block32(g_diffuser *p, float *vec, int vecsize)
-{
-	double v, coeff, delayed;
-	int i, writep, readp, del;
-	int wrap = p->wrap;
-	double *delbuf = p->buf;
-	del = p->tap[0];
-	writep = p->idx;
-	coeff = p->coeff;
-	
-	for(i=0; i<vecsize; i++) {
-		readp = (writep-del) & wrap;
-		delayed = delbuf[readp];
-		
-		v = vec[i] - delayed*coeff;
-		/*
-#ifdef DENORM_WANT_FIX
-		
-		 if (IS_DENORM_NAN_DOUBLE(v)) {		
-			 post("diffuser_do_block: v---> DENORM or NAN!");
-		 }
-		FIX_DENORM_DOUBLE(v);
-#endif
-		*/
-		vec[i] = delayed + v*coeff;
-		/*
-#ifdef DENORM_WANT_FIX
-		
-		 if (IS_DENORM_NAN_FLOAT(vec[i])) {
-			 post("diffuser_do_block: vec[i]--> DENORM or NAN!");
-		 }
-		FIX_DENORM_FLOAT(vec[i]);
-#endif
-		*/
-		delbuf[writep] = v;
-		writep = (writep+1)&wrap;
-	}
-	p->idx = writep;
-}
-
-
 
 
 
@@ -228,27 +131,11 @@ void diffuser_do_block(g_diffuser *p, double *vec, int vecsize)
 		readp = (writep-del) & wrap;
 		delayed = delbuf[readp];
 		
-		//v = vec[i] - delayed*coeff;
-		v = *(vec+i) - delayed*coeff;
-		/*
-#ifdef DENORM_WANT_FIX
-		
-		if (IS_DENORM_NAN_DOUBLE(v)) {		
-			post("diffuser_do_block: v---> DENORM or NAN!");
-		 }
-		//FIX_DENORM_DOUBLE(v);
-#endif
-		*/
+		v = vec[i] - delayed*coeff;
+		//v = *(vec+i) - delayed*coeff;
+
 		vec[i] = delayed + v*coeff;
-		/*
-#ifdef DENORM_WANT_FIX
-		
-		if (IS_DENORM_NAN_DOUBLE(vec[i])) {
-			post("diffuser_do_block: vec[i]--> DENORM or NAN!");
-		}
-		//FIX_DENORM_DOUBLE(vec[i]);
-#endif
-		*/
+
 		delbuf[writep] = v;
 		writep = (writep+1)&wrap;
 	}
@@ -271,24 +158,10 @@ double diffuser_do_decay(g_diffuser *p, double x, double *outL, double *outR)
 	delayed = buf[readp];
 	coeff = p->coeff;
 	
-	v = x - delayed*coeff;
-	/*
-#ifdef DENORM_WANT_FIX
-	if (IS_DENORM_NAN_DOUBLE(v)) {
-		post("diffuser_do_decay: v-->DENORM or NAN!");
-	}
-	FIX_DENORM_DOUBLE(v);
-#endif
-	*/
+    v = x - delayed*coeff;
+
 	y = delayed + v*coeff;
-	/*
-#ifdef DENORM_WANT_FIX
-	if (IS_DENORM_NAN_DOUBLE(y)) {
-		post("diffuser_do_decay: y-->DENORM or NAN!");
-	}
-	FIX_DENORM_DOUBLE(y);
-#endif
-	*/
+
 	// output taps
 	readp = (writep-del1) & wrap;
 	*outL -= buf[readp];
@@ -364,14 +237,7 @@ double tapdelay1_do_left(g_tapdelay *p, double x, double *outL, double *outR)
 	
 	// onepole smoothing
 	y = coef1 * y + coef2 * lastout;
-	/*
-#ifdef DENORM_WANT_FIX
-	if (IS_DENORM_NAN_DOUBLE(y)) {
-		post("tapdelay1_do_left: onepole--> DENORM or NAN!");
-	}
-	FIX_DENORM_DOUBLE(y);
-#endif
-	*/
+	
 	lastout = y;
 	p->writep = writep;
 	p->lastout = lastout;
@@ -392,7 +258,6 @@ double tapdelay1_do_right(g_tapdelay *p, double x, double *outL, double *outR)
 	coef1 = 1.0 - coef2;
 	lastout = p->lastout;
 	
-	//for(i=0; i<4; i++) {
 	readp = (writep-tap[0]) & wrap;
 	y = buf[readp];
 	
@@ -410,14 +275,7 @@ double tapdelay1_do_right(g_tapdelay *p, double x, double *outL, double *outR)
 	
 	// onepole smoothing
 	y = coef1 * y + coef2 * lastout;				// DENORM!!!!
-	/*
-#ifdef DENORM_WANT_FIX
-	if (IS_DENORM_NAN_DOUBLE(y)) {
-		post("tapdelay1_do_right: onepole--> DENORM or NAN!");
-	}
-	FIX_DENORM_DOUBLE(y);
-#endif
-	*/
+
 	lastout = y;
 	p->writep = writep;
 	p->lastout = lastout;
