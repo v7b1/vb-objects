@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		350B6EC8204031DF00DCB1D6 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 350B6EC7204031DF00DCB1D6 /* Accelerate.framework */; };
 		359C196E1EB504F000821BC3 /* vb.src~.c in Sources */ = {isa = PBXBuildFile; fileRef = 359C196D1EB504F000821BC3 /* vb.src~.c */; };
-		35B2949D1FF00C7B00341E83 /* libsamplerate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B2949C1FF00C7B00341E83 /* libsamplerate.a */; };
-		35B2949F1FF00C8200341E83 /* samplerate.h in Headers */ = {isa = PBXBuildFile; fileRef = 35B2949E1FF00C8200341E83 /* samplerate.h */; };
+		35F27F2224E188410056C6FC /* libsamplerate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F27F2124E188410056C6FC /* libsamplerate.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,7 +18,7 @@
 		350B6EC7204031DF00DCB1D6 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		359C196D1EB504F000821BC3 /* vb.src~.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "vb.src~.c"; sourceTree = "<group>"; };
 		35B2949C1FF00C7B00341E83 /* libsamplerate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsamplerate.a; sourceTree = "<group>"; };
-		35B2949E1FF00C8200341E83 /* samplerate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = samplerate.h; sourceTree = "<group>"; };
+		35F27F2124E188410056C6FC /* libsamplerate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsamplerate.a; path = libsamplerate/build/libsamplerate.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,8 +26,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35F27F2224E188410056C6FC /* libsamplerate.a in Frameworks */,
 				350B6EC8204031DF00DCB1D6 /* Accelerate.framework in Frameworks */,
-				35B2949D1FF00C7B00341E83 /* libsamplerate.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,7 +39,6 @@
 			children = (
 				22CF10220EE984600054F513 /* maxmspsdk.xcconfig */,
 				359C196D1EB504F000821BC3 /* vb.src~.c */,
-				35B2949E1FF00C8200341E83 /* samplerate.h */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
 				35B2949B1FF00C7A00341E83 /* Frameworks */,
 			);
@@ -58,6 +56,7 @@
 		35B2949B1FF00C7A00341E83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				35F27F2124E188410056C6FC /* libsamplerate.a */,
 				350B6EC7204031DF00DCB1D6 /* Accelerate.framework */,
 				35B2949C1FF00C7B00341E83 /* libsamplerate.a */,
 			);
@@ -71,7 +70,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35B2949F1FF00C8200341E83 /* samplerate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,9 +228,15 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					"\"$(C74SUPPORT)/max-includes\"",
+					"\"$(C74SUPPORT)/msp-includes\"",
+					"\"$(C74SUPPORT)/jit-includes\"",
+					"$(PROJECT_DIR)/libsamplerate/src",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/libsamplerate/build",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cycling74.${PRODUCT_NAME:rfc1034identifier}";
@@ -248,9 +252,15 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(C74SUPPORT)/max-includes\"",
+					"\"$(C74SUPPORT)/msp-includes\"",
+					"\"$(C74SUPPORT)/jit-includes\"",
+					"$(PROJECT_DIR)/libsamplerate/src",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/libsamplerate/build",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				ONLY_ACTIVE_ARCH = YES;
