@@ -1,0 +1,6 @@
+[submodule "libsamplerate"]
+	path = libsamplerate
+	url = https://github.com/erikd/libsamplerate.git
+[submodule "vb.src~/libsamplerate"]
+	path = vb.src~/libsamplerate
+	url = https://github.com/erikd/libsamplerate.git
