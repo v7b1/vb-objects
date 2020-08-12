@@ -14,10 +14,10 @@
 #endif
 
 
-#define MAXFFTSIZE		2097152		// about 47.5 seconds @ sr: 44.1 kHz
+#define MAXFFTSIZE      16777216 // 1<<24        // about 6 min. 20 seconds @ sr: 44.1 kHz
 #define RAND_SCALE	    1.0f/RAND_MAX
 #define MY_PI			3.14159265
-#define VERSION			"1.1.1"
+#define VERSION			"1.1.2"
 
 
 /****************************************************
@@ -28,6 +28,7 @@
 	changed FFTW to float - feb. 2015
 	small bugfixes, august 2015
     update fftwlib, august 2019
+    increase maximum FFT size, august 2020
  
  ****************************************************/
 
@@ -242,6 +243,7 @@ void myObj_set_reclen(t_myObj *x, double t) {
 
 void myObj_freezeBuf(t_myObj *x)
 {
+    myObj_setBuf(x, x->bufname);
 	if(!x->busy)
 		defer_low(x, (method)do_freezeBuf, NULL,0, NULL);
 }
