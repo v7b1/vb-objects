@@ -38,7 +38,8 @@ struct timecode_def {
         taps; /* central LFSR taps, excluding end taps */
     unsigned int length, /* in cycles */
         safe; /* last 'safe' timecode number (for auto disconnect) */
-    bool lookup; /* true if lut has been generated */
+    uint8_t lookup; // vb
+    //bool lookup; /* true if lut has been generated */
     struct lut lut;
 };
 
@@ -80,6 +81,8 @@ struct timecoder {
 
 struct timecode_def* timecoder_find_definition(const char *name);
 void timecoder_free_lookup(void);
+void timecoder_free_lookup2(struct timecode_def *def);  // vb
+void timecoder_status(void);
 
 void timecoder_init(struct timecoder *tc, struct timecode_def *def,
                     double speed, unsigned int sample_rate, bool phono);

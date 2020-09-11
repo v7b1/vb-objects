@@ -59,7 +59,7 @@ int C74_EXPORT main(void) {
 	c = class_new("vb.vinylcontrol2~", (method)myObj_new, (method)myObj_free, (short)sizeof(t_myObj), 0L,
 				  A_DEFSYM, A_DEFLONG, 0L);
 	class_addmethod(c, (method)myObj_dsp64, "dsp64", A_CANT, 0);
-	//class_addmethod(c, (method)myObj_bang, "bang", 0);
+    class_addmethod(c, (method)myObj_bang, "bang", 0);
 	class_addmethod(c, (method)myObj_dspstate, "dspstate", A_CANT, 0);
 	class_addmethod(c, (method)myObj_assist, "assist", A_CANT,0);
 	class_dspinit(c);
@@ -67,14 +67,15 @@ int C74_EXPORT main(void) {
 	myObj_class = c;
 	
 	
-    post("vb.vinylcontrol2~ by volker böhm - using xwax 1.7");
+    post("vb.vinylcontrol2~ by https://vboehm.net - using xwax 1.7");
 	
 	return 0;
 }
 
 
-void myObj_bang(t_myObj *x) {
-	
+void myObj_bang(t_myObj *x)
+{
+    timecoder_status();
 }
 
 void myObj_tick(t_myObj *x) {
@@ -205,7 +206,9 @@ void interpolate_vec(double start, double end, double* result, long size)
 void myObj_free(t_myObj *x)
 {
 	dsp_free((t_pxobject *)x);
-	timecoder_free_lookup();
+    timecoder_free_lookup2(x->tc.def);
+    timecoder_clear(&x->tc);
+    
 	if(x->pcm)
 		sysmem_freeptr(x->pcm);
 	if(x->m_clock)
@@ -218,7 +221,7 @@ void *myObj_new(t_symbol* vt,  long phonoline)
 {
 	t_myObj *x = object_alloc(myObj_class);
 	struct timecode_def *timecodeDef;
-	short phono;
+	bool phono;
 	
 	if(x) {
         x->outtc = intout(x);
@@ -234,9 +237,7 @@ void *myObj_new(t_symbol* vt,  long phonoline)
 		if(x->sr <= 0)
 			x->sr = 44100.;
 		
-		if(phonoline!=0)
-			phono = 1;
-		else phono = 0;
+        phono = phonoline != 0;
 		
 		x->lastPos = x->lastPitch = 0.0;
         x->timecode = 0;
@@ -251,10 +252,10 @@ void *myObj_new(t_symbol* vt,  long phonoline)
 		timecodeDef = timecoder_find_definition(vt->s_name);
         if(timecodeDef == NULL) {
             object_error((t_object*)x, "bad timecode definition...");
-            //object_free(x);   // don't do this: it calls myObj_free !
+            object_free(x); 
             return NULL;
         }
-		double speed = 1.0;	// 33.3 RMP
+		double speed = 1.0;	// 33.3 RPM
 		timecoder_init(&x->tc, timecodeDef, speed, x->sr, phono);
 		
 		// alloc mem

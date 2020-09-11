@@ -187,8 +187,11 @@ static int build_lookup(struct timecode_def *def)
     unsigned int n;
     bits_t current;
 
-    if (def->lookup)
+    if (def->lookup) {
+        def->lookup++;      // vb: increment instance count
         return 0;
+    }
+    
 
     fprintf(stderr, "Building LUT for %d bit %dHz timecode (%s)\n",
             def->bits, def->resolution, def->desc);
@@ -212,7 +215,7 @@ static int build_lookup(struct timecode_def *def)
         current = next;
     }
 
-    def->lookup = true;
+    def->lookup = 1; //true;
 
     return 0;
 }
@@ -259,6 +262,29 @@ void timecoder_free_lookup(void) {
     while (def < end) {
         if (def->lookup)
             lut_clear(&def->lut);
+        def++;
+    }
+}
+
+// vb: only clear lut, if no other instance is using it
+void timecoder_free_lookup2(struct timecode_def *def) {
+    if (def->lookup > 0) {
+        if(def->lookup == 1) { // we are the only one!
+            fprintf(stderr, "free %s\n", def->name);
+            lut_clear(&def->lut);
+        }
+        def->lookup--;
+    }
+}
+
+void timecoder_status(void) {
+    struct timecode_def *def, *end;
+    
+    def = &timecodes[0];
+    end = def + ARRAY_SIZE(timecodes);
+    
+    while (def < end) {
+        printf("%s lookup ? %d\n", def->name, def->lookup);
         def++;
     }
 }
