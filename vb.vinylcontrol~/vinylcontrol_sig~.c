@@ -284,7 +284,7 @@ void myObj_assist(t_myObj *x, void *b, long m, long a, char *s) {
 	else {
 		switch(a) {
 			case 0: sprintf (s, "(signal) pitch"); break;
-			case 1: sprintf(s, "(signal) position"); break;
+			case 1: sprintf(s, "(signal) position in secs"); break;
 			case 2: sprintf(s, "(int) timecode"); break;
 		}
 		
