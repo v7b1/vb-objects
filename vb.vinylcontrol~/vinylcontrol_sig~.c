@@ -10,7 +10,8 @@
     add signal outlets and smoothing
 */
 
-#define SCALE ((double)(1<<31))
+//#define SCALE ((double)(1<<31))
+#define SCALE ((double)(1<<15))
 
 
 // (from maxxx)
@@ -25,7 +26,7 @@ typedef struct {
 	void            *outpitch, *outpos, *outtc;
 	struct timecoder tc;
     int             timecode;
-    int             *pcm;
+    short             *pcm;
 
 	void			*m_clock;
     double          lastPos, lastPitch;
@@ -124,7 +125,7 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins,
     double      input;
 	long        vs = sampleframes;
     int         i, n;
-    int         *pcm = x->pcm;
+    short       *pcm = x->pcm;
 
     double      when, tcpos, pos, pitch;
     int         timecode;
@@ -158,7 +159,7 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins,
         pitch = timecoder_get_pitch(&x->tc);
         
         if (timecode == -1) {
-            pos = x->lastPos;       // -1;      TODO: gute Idee?
+            pos = x->lastPos;
         } else {
             tcpos = (double)timecode / timecoder_get_resolution(&x->tc);
             pos = tcpos + pitch * when;
@@ -191,7 +192,7 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins,
 void interpolate_vec(double start, double end, double* result, long size)
 {
     double diff = end - start;
-    double inc = 1.0/(double)(size-1);
+    double inc = 1.0/(double)(size);
     double a = 0.0;
     
     while(size--) {
@@ -257,7 +258,7 @@ void *myObj_new(t_symbol* vt,  long phonoline)
 		timecoder_init(&x->tc, timecodeDef, speed, x->sr, phono);
 		
 		// alloc mem
-		x->pcm = (int*)sysmem_newptrclear(8192*sizeof(int));
+		x->pcm = (short*)sysmem_newptrclear(8192*sizeof(short));
 		// clock
 		x->m_clock = clock_new(x, (method)myObj_tick);
 		
@@ -283,7 +284,7 @@ void myObj_assist(t_myObj *x, void *b, long m, long a, char *s) {
 	else {
 		switch(a) {
 			case 0: sprintf (s, "(signal) pitch"); break;
-			case 1: sprintf(s, "(signal) position"); break;
+			case 1: sprintf(s, "(signal) position in secs"); break;
 			case 2: sprintf(s, "(int) timecode"); break;
 		}
 		
