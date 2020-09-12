@@ -92,7 +92,7 @@ int timecoder_monitor_init(struct timecoder *tc, int size);
 void timecoder_monitor_clear(struct timecoder *tc);
 
 void timecoder_cycle_definition(struct timecoder *tc);
-void timecoder_submit(struct timecoder *tc, signed int *pcm, size_t npcm);
+void timecoder_submit(struct timecoder *tc, signed short *pcm, size_t npcm);
 signed int timecoder_get_position(struct timecoder *tc, double *when);
 
 /*

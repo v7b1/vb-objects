@@ -9,7 +9,7 @@
 	make a new version of vinylcontrol~
 */
 
-#define SCALE ((double)(1<<31))
+#define SCALE ((double)(1<<15))
 #define MAXBLOCK 128
 
 // (from maxxx)
@@ -23,8 +23,8 @@ typedef struct {
 	double          sr;
 	void            *outpitch, *outpos, *outtc;
 	struct timecoder tc;
-	int             *pcm;
-	long             numFrames;
+	short           *pcm;
+	long            numFrames;
 	void			*m_clock;
 	int             count;
 } t_myObj;
@@ -143,7 +143,7 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins,
 	double input, sum = 0;
 	long vs = sampleframes;
 	int i, n, count = x->count;
-	int  *pcm = x->pcm;
+	short  *pcm = x->pcm;
 	
 	if (x->x_obj.z_disabled)
 		return;
@@ -234,7 +234,7 @@ void *myObj_new(t_symbol* vt,  long phonoline)
 		timecoder_init(&x->tc, timecodeDef, speed, x->sr, phono);
 		
 		// alloc mem
-		x->pcm = (int*)sysmem_newptrclear(8192*sizeof(int));
+		x->pcm = (short*)sysmem_newptrclear(8192*sizeof(short));
 		// clock
 		x->m_clock = clock_new(x, (method)myObj_tick);
 		

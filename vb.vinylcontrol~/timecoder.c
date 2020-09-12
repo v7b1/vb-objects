@@ -595,13 +595,13 @@ void timecoder_cycle_definition(struct timecoder *tc)
  * PCM data is in the full range of signed short; ie. 16-bit signed.
  */
 // vb: changed this, so it accepts signed int as input sample format
-void timecoder_submit(struct timecoder *tc, signed int *pcm, size_t npcm)
+void timecoder_submit(struct timecoder *tc, signed short *pcm, size_t npcm)
 {
     while (npcm--) {
 	signed int left, right, primary, secondary;
 
-        left = pcm[0]; //<< 16;
-        right = pcm[1];// << 16;
+        left = pcm[0] << 16;
+        right = pcm[1] << 16;
 
         if (tc->def->flags & SWITCH_PRIMARY) {
             primary = left;
