@@ -33,9 +33,9 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Deployment"
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      buildConfiguration = "Development"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -58,7 +58,7 @@
       </MacroExpansion>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-open &quot;/Users/vb/Documents/coding/GitHub/max-objects/vb-objects/vb.vinylcontrol~/vb.vinylcontrol2~TEST.maxhelp&quot;"
+            argument = "-open &quot;/Users/vb/Documents/coding/GitHub/max-objects/vb-objects/vb.vinylcontrol~/crasher.maxpat&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

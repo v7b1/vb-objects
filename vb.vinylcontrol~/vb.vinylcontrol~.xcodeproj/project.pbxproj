@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		353E4CED1A51A69E00A4A68C /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353E4CEC1A51A69E00A4A68C /* MaxAudioAPI.framework */; };
-		354E0F801C103B9C003C1EBD /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 354E0F7C1C103B9C003C1EBD /* debug.h */; };
 		354E0F811C103B9C003C1EBD /* lut.c in Sources */ = {isa = PBXBuildFile; fileRef = 354E0F7D1C103B9C003C1EBD /* lut.c */; };
 		354E0F821C103B9C003C1EBD /* lut.h in Headers */ = {isa = PBXBuildFile; fileRef = 354E0F7E1C103B9C003C1EBD /* lut.h */; };
 		354E0F831C103B9C003C1EBD /* pitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 354E0F7F1C103B9C003C1EBD /* pitch.h */; };
@@ -18,18 +16,16 @@
 		3568F492222EC17C00C5355D /* lut.h in Headers */ = {isa = PBXBuildFile; fileRef = 354E0F7E1C103B9C003C1EBD /* lut.h */; };
 		3568F493222EC17C00C5355D /* timecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 354E0F851C10426E003C1EBD /* timecoder.h */; };
 		3568F494222EC17C00C5355D /* pitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 354E0F7F1C103B9C003C1EBD /* pitch.h */; };
-		3568F495222EC17C00C5355D /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 354E0F7C1C103B9C003C1EBD /* debug.h */; };
 		3568F498222EC17C00C5355D /* lut.c in Sources */ = {isa = PBXBuildFile; fileRef = 354E0F7D1C103B9C003C1EBD /* lut.c */; };
 		3568F499222EC17C00C5355D /* timecoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 354E0F841C10426E003C1EBD /* timecoder.c */; };
-		3568F49C222EC17C00C5355D /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353E4CEC1A51A69E00A4A68C /* MaxAudioAPI.framework */; };
 		3568F4A3222EC19400C5355D /* vinylcontrol_sig~.c in Sources */ = {isa = PBXBuildFile; fileRef = 3568F48D222EC15A00C5355D /* vinylcontrol_sig~.c */; };
+		35CF7224250CD7FF00F2F8E9 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35CF7223250CD7FF00F2F8E9 /* MaxAudioAPI.framework */; };
+		35CF7225250CD82400F2F8E9 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35CF7223250CD7FF00F2F8E9 /* MaxAudioAPI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2FBBEAE508F335360078DB84 /* vb.vinylcontrol~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "vb.vinylcontrol~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3523B17117197C3500AAFD5C /* maxmspsdk.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = maxmspsdk.xcconfig; path = ../maxmspsdk.xcconfig; sourceTree = SOURCE_ROOT; };
-		353E4CEC1A51A69E00A4A68C /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "/Users/vb/project-files/C-prog/MaxSDK-6.1.4/c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = "<absolute>"; };
-		354E0F7C1C103B9C003C1EBD /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
 		354E0F7D1C103B9C003C1EBD /* lut.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lut.c; sourceTree = "<group>"; };
 		354E0F7E1C103B9C003C1EBD /* lut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lut.h; sourceTree = "<group>"; };
 		354E0F7F1C103B9C003C1EBD /* pitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pitch.h; sourceTree = "<group>"; };
@@ -37,6 +33,7 @@
 		354E0F851C10426E003C1EBD /* timecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timecoder.h; sourceTree = "<group>"; };
 		3568F48D222EC15A00C5355D /* vinylcontrol_sig~.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "vinylcontrol_sig~.c"; sourceTree = "<group>"; };
 		3568F4A1222EC17C00C5355D /* vb.vinylcontrol2~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "vb.vinylcontrol2~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35CF7223250CD7FF00F2F8E9 /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "../../c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = "<group>"; };
 		35E17BB61C103862007AF7A9 /* vinylcontrol~.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "vinylcontrol~.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -45,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				353E4CED1A51A69E00A4A68C /* MaxAudioAPI.framework in Frameworks */,
+				35CF7224250CD7FF00F2F8E9 /* MaxAudioAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3568F49C222EC17C00C5355D /* MaxAudioAPI.framework in Frameworks */,
+				35CF7225250CD82400F2F8E9 /* MaxAudioAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,7 +62,6 @@
 			children = (
 				354E0F841C10426E003C1EBD /* timecoder.c */,
 				354E0F851C10426E003C1EBD /* timecoder.h */,
-				354E0F7C1C103B9C003C1EBD /* debug.h */,
 				354E0F7D1C103B9C003C1EBD /* lut.c */,
 				354E0F7E1C103B9C003C1EBD /* lut.h */,
 				354E0F7F1C103B9C003C1EBD /* pitch.h */,
@@ -73,7 +69,7 @@
 				35E17BB61C103862007AF7A9 /* vinylcontrol~.c */,
 				3523B17117197C3500AAFD5C /* maxmspsdk.xcconfig */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
-				353E4CEC1A51A69E00A4A68C /* MaxAudioAPI.framework */,
+				35CF7222250CD7FF00F2F8E9 /* Frameworks */,
 			);
 			name = iterator;
 			sourceTree = "<group>";
@@ -87,6 +83,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		35CF7222250CD7FF00F2F8E9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				35CF7223250CD7FF00F2F8E9 /* MaxAudioAPI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -97,7 +101,6 @@
 				354E0F821C103B9C003C1EBD /* lut.h in Headers */,
 				354E0F871C10426E003C1EBD /* timecoder.h in Headers */,
 				354E0F831C103B9C003C1EBD /* pitch.h in Headers */,
-				354E0F801C103B9C003C1EBD /* debug.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,7 +111,6 @@
 				3568F492222EC17C00C5355D /* lut.h in Headers */,
 				3568F493222EC17C00C5355D /* timecoder.h in Headers */,
 				3568F494222EC17C00C5355D /* pitch.h in Headers */,
-				3568F495222EC17C00C5355D /* debug.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

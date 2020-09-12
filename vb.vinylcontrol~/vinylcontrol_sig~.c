@@ -122,7 +122,6 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins,
     t_double    *outpitch = outs[0];
     t_double    *outpos = outs[1];
     double      input;
-    //double      sum = 0;
 	long        vs = sampleframes;
     int         i, n;
     int         *pcm = x->pcm;
@@ -138,7 +137,6 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins,
 	for(n = 0; n < vs; n++) {
 		for(i = 0; i < TIMECODER_CHANNELS; i++) {
 			input = ins[i][n];
-			//sum += fabs(input);
 			pcm[n * TIMECODER_CHANNELS + i ] = (int)(SCALE*input);
 		}
 	}
