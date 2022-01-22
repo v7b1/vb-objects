@@ -1,0 +1,358 @@
+// !$*UTF8*$!
+{
+	089C1669FE841209C02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Deployment;
+		activeTarget = 2FBBEAD608F335360078DB84 /* max-external */;
+		addToTargets = (
+			2FBBEAD608F335360078DB84 /* max-external */,
+		);
+		codeSenseManager = 3588967517197817000564EB /* Code sense */;
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					10,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFindDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFindDataSource_LocationID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					200,
+					45.20849609375,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFindDataSource_MessageID,
+					PBXFindDataSource_LocationID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					10,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 464428716;
+			PBXWorkspaceStateSaveDate = 464428716;
+		};
+		perUserProjectItems = {
+			3500A2AD1B8CA28A002D9BD3 /* PBXTextBookmark */ = 3500A2AD1B8CA28A002D9BD3 /* PBXTextBookmark */;
+			351FCA9F1B8CA7F60072C95C /* PBXTextBookmark */ = 351FCA9F1B8CA7F60072C95C /* PBXTextBookmark */;
+			35581CE41A8BB44D001ACD8E /* PBXTextBookmark */ = 35581CE41A8BB44D001ACD8E /* PBXTextBookmark */;
+			3567A0941B8C7804008E2127 /* PBXTextBookmark */ = 3567A0941B8C7804008E2127 /* PBXTextBookmark */;
+			3567A0951B8C7804008E2127 /* PBXTextBookmark */ = 3567A0951B8C7804008E2127 /* PBXTextBookmark */;
+			3567A0961B8C7804008E2127 /* PBXTextBookmark */ = 3567A0961B8C7804008E2127 /* PBXTextBookmark */;
+			3567A0991B8C7804008E2127 /* PBXTextBookmark */ = 3567A0991B8C7804008E2127 /* PBXTextBookmark */;
+			356F9C801B9CA4AD00A0EC18 /* PBXTextBookmark */ = 356F9C801B9CA4AD00A0EC18 /* PBXTextBookmark */;
+			356F9C811B9CA4AD00A0EC18 /* PBXTextBookmark */ = 356F9C811B9CA4AD00A0EC18 /* PBXTextBookmark */;
+			357DA55B1B80F658001420BB /* PBXTextBookmark */ = 357DA55B1B80F658001420BB /* PBXTextBookmark */;
+			357F5AD319390C4E00717A10 /* PBXTextBookmark */ = 357F5AD319390C4E00717A10 /* PBXTextBookmark */;
+			35805E1A1B69343A00425640 /* PBXTextBookmark */ = 35805E1A1B69343A00425640 /* PBXTextBookmark */;
+			358853441B8BB217009DE9A7 /* PBXTextBookmark */ = 358853441B8BB217009DE9A7 /* PBXTextBookmark */;
+			35F3D24E1BAE971300E60EA6 /* PBXTextBookmark */ = 35F3D24E1BAE971300E60EA6 /* PBXTextBookmark */;
+			35F3D2E71BAE9F0800E60EA6 /* PBXTextBookmark */ = 35F3D2E71BAE9F0800E60EA6 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 3588967417197817000564EB /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	2FBBEAD608F335360078DB84 /* max-external */ = {
+		activeExec = 0;
+	};
+	3500A2AD1B8CA28A002D9BD3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3567A0981B8C7804008E2127 /* ext_obex_util.h */;
+		name = "ext_obex_util.h: 1484";
+		rLen = 58;
+		rLoc = 68797;
+		rType = 0;
+		vrLen = 1382;
+		vrLoc = 67388;
+	};
+	351F7F9F1B53A27800954F14 /* ext_buffer.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = ext_buffer.h;
+		path = "/Users/vb/project-files/C-prog/MaxSDK-6.1.4/c74support/msp-includes/ext_buffer.h";
+		sourceTree = "<absolute>";
+	};
+	351FCA9F1B8CA7F60072C95C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3523B17117197C3500AAFD5C /* maxmspsdk.xcconfig */;
+		name = "maxmspsdk.xcconfig: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 477;
+		vrLoc = 332;
+	};
+	3523B17117197C3500AAFD5C /* maxmspsdk.xcconfig */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {871, 1560}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1557}";
+			sepNavWindowFrame = "{{15, 0}, {770, 873}}";
+		};
+	};
+	35581C551A8B9F97001ACD8E /* types.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = types.h;
+		path = "/Users/vb/project-files/C-prog/aubioTest/aubio.framework/Headers/types.h";
+		sourceTree = "<absolute>";
+	};
+	35581C581A8B9F97001ACD8E /* ext_proto.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = ext_proto.h;
+		path = "/Users/vb/project-files/C-prog/MaxSDK-6.1.4/c74support/max-includes/ext_proto.h";
+		sourceTree = "<absolute>";
+	};
+	35581CE31A8BB44D001ACD8E /* fvec.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = fvec.h;
+		path = "/Users/vb/project-files/C-prog/aubioTest/aubio.framework/Headers/fvec.h";
+		sourceTree = "<absolute>";
+	};
+	35581CE41A8BB44D001ACD8E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 35581CE51A8BB44D001ACD8E /* musicutils.h */;
+		name = "musicutils.h: 101";
+		rLen = 27;
+		rLoc = 3125;
+		rType = 0;
+		vrLen = 1154;
+		vrLoc = 2179;
+	};
+	35581CE51A8BB44D001ACD8E /* musicutils.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = musicutils.h;
+		path = "/Users/vb/project-files/C-prog/aubioTest/aubio.framework/Headers/musicutils.h";
+		sourceTree = "<absolute>";
+	};
+	3567A0941B8C7804008E2127 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 357F5AD219390C4E00717A10 /* onset.h */;
+		name = "onset.h: 67";
+		rLen = 1;
+		rLoc = 2016;
+		rType = 0;
+		vrLen = 1198;
+		vrLoc = 1381;
+	};
+	3567A0951B8C7804008E2127 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 35581C551A8B9F97001ACD8E /* types.h */;
+		name = "types.h: 41";
+		rLen = 29;
+		rLoc = 1045;
+		rType = 0;
+		vrLen = 841;
+		vrLoc = 756;
+	};
+	3567A0961B8C7804008E2127 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 35581C581A8B9F97001ACD8E /* ext_proto.h */;
+		name = "ext_proto.h: 722";
+		rLen = 24;
+		rLoc = 23839;
+		rType = 0;
+		vrLen = 1152;
+		vrLoc = 23300;
+	};
+	3567A0981B8C7804008E2127 /* ext_obex_util.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = ext_obex_util.h;
+		path = "/Users/vb/project-files/C-prog/MaxSDK-6.1.4/c74support/max-includes/ext_obex_util.h";
+		sourceTree = "<absolute>";
+	};
+	3567A0991B8C7804008E2127 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 35581CE31A8BB44D001ACD8E /* fvec.h */;
+		name = "fvec.h: 92";
+		rLen = 52;
+		rLoc = 2012;
+		rType = 0;
+		vrLen = 778;
+		vrLoc = 1645;
+	};
+	356F9C801B9CA4AD00A0EC18 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 351F7F9F1B53A27800954F14 /* ext_buffer.h */;
+		name = "ext_buffer.h: 202";
+		rLen = 76;
+		rLoc = 6118;
+		rType = 0;
+		vrLen = 1462;
+		vrLoc = 5575;
+	};
+	356F9C811B9CA4AD00A0EC18 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 356F9C821B9CA4AD00A0EC18 /* max_types.h */;
+		name = "max_types.h: 93";
+		rLen = 110;
+		rLoc = 3341;
+		rType = 0;
+		vrLen = 1496;
+		vrLoc = 0;
+	};
+	356F9C821B9CA4AD00A0EC18 /* max_types.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = max_types.h;
+		path = "/Users/vb/project-files/C-prog/MaxSDK-6.1.4/c74support/max-includes/max_types.h";
+		sourceTree = "<absolute>";
+	};
+	357DA55B1B80F658001420BB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 357DA55C1B80F658001420BB /* aubio.h */;
+		name = "aubio.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 875;
+		vrLoc = 5346;
+	};
+	357DA55C1B80F658001420BB /* aubio.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = aubio.h;
+		path = "/Users/vb/project-files/C-prog/MaxSDK-6.1.4/myExterns-6.1.4/vb.aubio~/aubio.framework/Headers/aubio.h";
+		sourceTree = "<absolute>";
+	};
+	357F5AD219390C4E00717A10 /* onset.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = onset.h;
+		path = "/Users/vb/project-files/C-prog/aubioTest/aubio.framework/Headers/onset/onset.h";
+		sourceTree = "<absolute>";
+	};
+	357F5AD319390C4E00717A10 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 357F5AD419390C4E00717A10 /* phasevoc.h */;
+		name = "phasevoc.h: 70";
+		rLen = 69;
+		rLoc = 2007;
+		rType = 0;
+		vrLen = 1218;
+		vrLoc = 1427;
+	};
+	357F5AD419390C4E00717A10 /* phasevoc.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = phasevoc.h;
+		path = "/Users/vb/project-files/C-prog/aubioTest/aubio.framework/Headers/spectral/phasevoc.h";
+		sourceTree = "<absolute>";
+	};
+	35805E1A1B69343A00425640 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 35805E1B1B69343A00425640 /* onsetdetection.c */;
+		name = "onsetdetection.c: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1131;
+		vrLoc = 1626;
+	};
+	35805E1B1B69343A00425640 /* onsetdetection.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = onsetdetection.c;
+		path = "/Users/vb/Documents/max-msp/unterricht/onset-Detection/high-freq-contents_masri/onsetdetection.c";
+		sourceTree = "<absolute>";
+	};
+	358853441B8BB217009DE9A7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 358853451B8BB217009DE9A7 /* aubioonset.c */;
+		name = "aubioonset.c: 43";
+		rLen = 1;
+		rLoc = 1223;
+		rType = 0;
+		vrLen = 797;
+		vrLoc = 708;
+	};
+	358853451B8BB217009DE9A7 /* aubioonset.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = aubioonset.c;
+		path = "/Users/vb/project-files/xxx-libs/aubio/examples/aubioonset.c";
+		sourceTree = "<absolute>";
+	};
+	3588967417197817000564EB /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	3588967517197817000564EB /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	35E6E60617197E5C00CCAD02 /* vb.aubio~.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {785, 8300}}";
+			sepNavSelRange = "{4539, 0}";
+			sepNavVisRange = "{3907, 1041}";
+			sepNavWindowFrame = "{{15, 0}, {813, 878}}";
+		};
+	};
+	35F3D24E1BAE971300E60EA6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 35E6E60617197E5C00CCAD02 /* vb.aubio~.c */;
+		name = "vb.aubio~.c: 169";
+		rLen = 0;
+		rLoc = 4539;
+		rType = 0;
+		vrLen = 729;
+		vrLoc = 4072;
+	};
+	35F3D2E71BAE9F0800E60EA6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 35E6E60617197E5C00CCAD02 /* vb.aubio~.c */;
+		name = "vb.aubio~.c: 169";
+		rLen = 0;
+		rLoc = 4539;
+		rType = 0;
+		vrLen = 1041;
+		vrLoc = 3907;
+	};
+}

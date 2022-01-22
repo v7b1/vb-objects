@@ -1,21 +1,15 @@
-# xcode noise
-*.pbxuser
-*.perspective 
-*.perspectivev3
-
-## User settings
-xcuserdata/
-
-
-### Xcode Patch ###
-*.xcodeproj/*
-!*.xcodeproj/project.pbxproj
-!*.xcodeproj/xcshareddata/
-!*.xcworkspace/contents.xcworkspacedata
-**/xcshareddata/WorkspaceSettings.xcsettings
-
-*.mxo
-*.zip
-
-build/
+sysbuild
+*.sdf
+*.suo
+*.sln
+*.opensdf
+log.txt
+externals
+support
+build
+*.o
+*.dylib
+tmp
 xxx
+
+package-info.json

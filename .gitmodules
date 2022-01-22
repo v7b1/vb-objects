@@ -4,3 +4,6 @@
 [submodule "vb.src~/libsamplerate"]
 	path = vb.src~/libsamplerate
 	url = https://github.com/erikd/libsamplerate.git
+[submodule "source/max-sdk-base"]
+	path = source/max-sdk-base
+	url = https://github.com/Cycling74/max-sdk-base
