@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 4,
+			"minor" : 1,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -37,7 +37,22 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 11.0,
+					"id" : "obj-9",
+					"linecount" : 5,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 208.0, 166.0, 385.0, 68.0 ],
+					"text" : "arg 1: serato_2a, serato_2b, serato_cd, traktor_a, traktor_b, mixvibes_v2, mixvibes_7inch\ndefault: serato_2a\narg 2: a non-zero integer number changes from line level to phono input\ndafault: 0 (line level)"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"fontsize" : 14.0,
 					"id" : "obj-14",
@@ -80,20 +95,6 @@
 					"outlettype" : [ "signal", "float" ],
 					"patching_rect" : [ 52.0, 236.0, 60.0, 21.0 ],
 					"sig" : 0.0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 11.0,
-					"id" : "obj-9",
-					"linecount" : 2,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 213.0, 191.0, 309.0, 31.0 ],
-					"text" : "arg: serato_2a, serato_2b, serato_cd, traktor_a, traktor_b\ndefault serato_2a"
 				}
 
 			}

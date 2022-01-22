@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 4,
+			"minor" : 1,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 704.0, 192.0, 640.0, 480.0 ],
+		"rect" : [ 882.0, 371.0, 640.0, 480.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -37,17 +37,18 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 11.0,
 					"id" : "obj-9",
-					"linecount" : 2,
+					"linecount" : 5,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 213.0, 191.0, 309.0, 31.0 ],
-					"text" : "arg: serato_2a, serato_2b, serato_cd, traktor_a, traktor_b\ndefault serato_2a"
+					"patching_rect" : [ 221.0, 160.0, 385.0, 68.0 ],
+					"text" : "arg 1: serato_2a, serato_2b, serato_cd, traktor_a, traktor_b, mixvibes_v2, mixvibes_7inch\ndefault: serato_2a\narg 2: a non-zero integer number changes from line level to phono input\ndafault: 0 (line level)"
 				}
 
 			}
