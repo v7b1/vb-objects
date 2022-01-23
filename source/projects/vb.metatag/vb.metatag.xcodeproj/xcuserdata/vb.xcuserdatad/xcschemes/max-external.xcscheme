@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2FBBEAD608F335360078DB84"
-               BuildableName = "vb.metatag.mxo"
+               BuildableName = "vb.metatag.bundle"
                BlueprintName = "max-external"
                ReferencedContainer = "container:vb.metatag.xcodeproj">
             </BuildableReference>
@@ -29,8 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Deployment"
@@ -51,13 +49,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2FBBEAD608F335360078DB84"
-            BuildableName = "vb.metatag.mxo"
+            BuildableName = "vb.metatag.bundle"
             BlueprintName = "max-external"
             ReferencedContainer = "container:vb.metatag.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Deployment"
@@ -69,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2FBBEAD608F335360078DB84"
-            BuildableName = "vb.metatag.mxo"
+            BuildableName = "vb.metatag.bundle"
             BlueprintName = "max-external"
             ReferencedContainer = "container:vb.metatag.xcodeproj">
          </BuildableReference>
