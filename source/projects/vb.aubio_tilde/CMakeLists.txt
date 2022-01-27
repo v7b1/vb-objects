@@ -1,12 +1,13 @@
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/../../max-sdk-base/script/max-pretarget.cmake)
 
-set(LIBSR_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../libs/libsamplerate")
+set(LIBS_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../libs")
+set(AUBIO_PATH "${LIBS_PATH}/aubio/build/dist")
 
 
 include_directories( 
 	"${C74_INCLUDES}"
-	"${LIBSR_PATH}/include"
+	"${AUBIO_PATH}/include"
 )
 
 
@@ -18,9 +19,9 @@ add_library(
 
 if(APPLE)
 	target_link_libraries(${PROJECT_NAME} PUBLIC "-framework Accelerate")
-	target_link_libraries(${PROJECT_NAME} PUBLIC ${LIBSR_PATH}/build/src/libsamplerate.a)
+	target_link_libraries(${PROJECT_NAME} PUBLIC ${AUBIO_PATH}/lib/libaubio.a)
 else()
-	target_link_libraries(${PROJECT_NAME} PUBLIC ${LIBSR_PATH}/build/src/Release/samplerate.lib)
+	#target_link_libraries(${PROJECT_NAME} PUBLIC ${LIBSR_PATH}/build/src/Release/samplerate.lib)
 endif()
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/../../max-sdk-base/script/max-posttarget.cmake)
