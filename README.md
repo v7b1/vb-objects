@@ -1,15 +1,43 @@
 # vb-objects
 This is a slowly growing collection of externals made for the programming environment MaxMSP (www.Cycling74.com).
 
-###### Steps to compile:
 
-- create a directory, name it, as you like
-- copy a 'c74support' folder from a recent Max SDK into it, e.g. from here
-https://github.com/Cycling74/max-sdk
-- on the same directory level copy the vb-objects folder
-- step into vb-objects and build each individual project
+
+## Building
+
+### Mac
+
+You can build on the command line using Makefiles, or you can generate an Xcode project and use the GUI to build.
+
+- Xcode:
+
+  ```
+  cmake -G Xcode ..
+  cmake --build . --config 'Release'
+  ```
+
+  or, instead of the second step, open the Xcode project and use the GUI.
+
+- Make:
+
+  ```
+  cmake ..
+  cmake --build . --config 'Release'
+  ```
+
+  Note that the Xcode project is preferrable because it is able to substitute values for e.g. the Info.plist files in your builds.
+
+
+
+### Windows
+
+Note: this is untested, but should work something like this:
+
+```
+cmake ..
+cmake --build . --config 'Release'
+```
+
+
 
 Compiled objects for osx can be found here: https://vboehm.net/downloads
-
-Volker Böhm
-https://vboehm.net
