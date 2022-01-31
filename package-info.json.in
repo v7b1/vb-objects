@@ -1,12 +1,12 @@
 {
-	"author" : "vboehm",
+	"author" : "volker böhm",
 	"description" : "a collection of max objects",
-	"homepatcher" : "blah.maxpat",
+	"homepatcher" : "",
 	"max_version_min" : "8.1",
 	"name" : "vb-objects",
 	"os" : {
 		"macintosh" : {
-			"platform" : [ "x64" ],
+			"platform" : [ "x64", "arm64" ],
 			"min_version" : "none"
 		},
 		"windows" : {
@@ -15,7 +15,7 @@
 		}
 	},
 	"package_extra" : { 
-		"reverse_domain" : "vboehm.net",
+		"reverse_domain" : "net.vboehm",
 		"copyright" : "Copyright (c) 2021 vboehm"
 	},
 	"tags" : [ ],
