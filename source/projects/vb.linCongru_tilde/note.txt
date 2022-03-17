@@ -1,0 +1,1 @@
+makes max5 crash if quit max while running the helppatch!
