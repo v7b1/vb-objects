@@ -4,9 +4,6 @@
 [submodule "source/libs/libsamplerate"]
 	path = source/libs/libsamplerate
 	url = https://github.com/libsndfile/libsamplerate
-[submodule "source/libs/taglib"]
-	path = source/libs/taglib
-	url = https://github.com/taglib/taglib
 [submodule "source/libs/aubio"]
 	path = source/libs/aubio
 	url = https://github.com/aubio/aubio
