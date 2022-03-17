@@ -42,7 +42,7 @@ void myObj_assist(t_myObj *x, void *b, long m, long a, char *s);
 void *myObj_new(long arg1);
 
 
-int C74_EXPORT main(void)
+void ext_main(void *r)
 {
 	t_class *c;
 	c = class_new("vb.gcd_lcm", (method)myObj_new, 0, (short)sizeof(t_myObj), 0L, A_DEFLONG, 0L);
@@ -58,7 +58,6 @@ int C74_EXPORT main(void)
 	
 	post("vb.gcd_lcm, volker böhm, 2007");
 	
-	return 0;
 }
 
 

@@ -100,7 +100,7 @@ void myObj_info(t_myObj *x);
 
 //--------------------------------------------------------------------------
 
-int C74_EXPORT main(void)
+void ext_main(void *r)
 {
 	t_class *c;
 	
@@ -126,7 +126,6 @@ int C74_EXPORT main(void)
 	
 	post("*** vb.freezer~ by volker böhm, version %s -- 64-bit", VERSION);
 	
-	return 0;
 }
 
 void myObj_info(t_myObj *x) {

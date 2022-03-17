@@ -75,7 +75,7 @@ t_symbol *sym_rms;
 
 //--------------------------------------------------------------------------
 
-int C74_EXPORT main(void)
+void ext_main(void *r)
 {
 	t_class *c;
 
@@ -107,8 +107,7 @@ int C74_EXPORT main(void)
 	
 	
 	post("*** vb.FFTWbuf~ by volker böhm, version %s", VERSION);
-	
-	return 0;
+
 }
 
 

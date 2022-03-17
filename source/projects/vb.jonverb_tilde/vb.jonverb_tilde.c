@@ -53,7 +53,7 @@ void myObj_free(t_myObj *x);
 
 
 
-int C74_EXPORT main(void) {
+void ext_main(void *r) {
 	t_class *c;
 	c = class_new("vb.jonverb~", (method)myObj_new, (method)myObj_free, 
 				  (short)sizeof(t_myObj), 0L, A_GIMME, 0L);
@@ -92,8 +92,7 @@ int C74_EXPORT main(void) {
 	
 	
 	post("vb.jonverb~ by volker böhm - version 1.0.1 -- https://vboehm.net");
-	
-	return 0;
+
 }
 
 

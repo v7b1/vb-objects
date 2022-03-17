@@ -67,7 +67,7 @@ static unsigned long long z = 88172645463325252LL;
 
 
 
-int C74_EXPORT main(void) {
+void ext_main(void *r) {
 	t_class *c;
 	c = class_new("vb.listdrunk", (method)myObj_new, (method)myObj_free, (short)sizeof(t_myObj),
 				  0L, A_GIMME, 0L);
@@ -86,7 +86,7 @@ int C74_EXPORT main(void) {
 	myObj_class = c;
 	
 	post("vb.listdrunk by volker böhm, april 2013");
-	return 0;
+
 }
 
 

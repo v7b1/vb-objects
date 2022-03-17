@@ -98,7 +98,7 @@ t_symbol *ps_buffer_modified;
 
 
 
-int C74_EXPORT main(void) {
+void ext_main(void *r) {
 	t_class *c;
 
 	c = class_new("vb.src~", (method)myObj_new, (method)myObj_free, (short)sizeof(t_myObj), 0L, A_GIMME, 0L);
@@ -128,7 +128,6 @@ int C74_EXPORT main(void) {
 	
 	post("vb.src~ 1.0.1, by Volker Böhm, using libsamplerate by Erik de Castro Lopo");
 	
-	return 0;
 }
 
 

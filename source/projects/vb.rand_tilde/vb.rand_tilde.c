@@ -40,7 +40,7 @@ void *myObj_new( t_symbol *s, long argc, t_atom *argv);
 void myObj_assist(t_myObj *x, void *b, long m, long a, char *s);
 
 
-int C74_EXPORT main(void) {
+void ext_main(void *r)  {
 	t_class *c;
 	
 	c = class_new("vb.rand~", (method)myObj_new, (method)dsp_free, (short)sizeof(t_myObj), 0L, 
@@ -62,8 +62,7 @@ int C74_EXPORT main(void) {
 	
 	
 	post("vb.rand~ by volker böhm");
-	
-	return 0;
+
 }
 
 

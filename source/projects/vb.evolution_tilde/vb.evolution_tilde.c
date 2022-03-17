@@ -67,7 +67,7 @@ void transpose( double *magin, double *magout, double *phin, double *phout, doub
 double getRand();
 
 
-int C74_EXPORT main(void) {
+void ext_main(void *r) {
 	t_class *c;
 	
 	c = class_new("vb.evolution~", (method)myObj_new, (method)myObj_free, (short)sizeof(t_myObj), 
@@ -91,7 +91,6 @@ int C74_EXPORT main(void) {
 	srand((unsigned int)time(NULL));
 	post("vb.evolution~ by volker böhm https://vboehm.net ");
 	
-	return 0;
 }
 
 

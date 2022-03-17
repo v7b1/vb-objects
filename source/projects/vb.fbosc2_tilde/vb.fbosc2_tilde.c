@@ -54,7 +54,7 @@ void *myObj_new(t_symbol *s, short argc, t_atom *argv);
 void *myObj_class;
 void myObj_free(t_myObj *x);
 
-int C74_EXPORT main(void) {
+void ext_main(void *r) {
 	t_class *c;
 	c = class_new("vb.fbosc2~", (method)myObj_new, (method)myObj_free, 
 				  (short)sizeof(t_myObj), 0L, 0L);
@@ -69,8 +69,7 @@ int C74_EXPORT main(void) {
 	myObj_class = c;
 	
 	post("vb.fbosc2~ by volker böhm, version 1.0.1");
-	
-	return 0;
+
 }
 
 void myObj_float(t_myObj *x, double f) {

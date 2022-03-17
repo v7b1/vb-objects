@@ -47,7 +47,7 @@ void *myObj_new( double arg );
 void myObj_assist(t_myObj *x, void *b, long m, long a, char *s);
 
 
-int C74_EXPORT main(void) {
+void ext_main(void *r)  {
 	t_class *c;
 	c = class_new("vb.brown~", (method)myObj_new, (method)dsp_free, (short)sizeof(t_myObj), 
 				  0L, A_DEFFLOAT, 0L);
@@ -62,8 +62,7 @@ int C74_EXPORT main(void) {
 	myObj_class = c;
 	
 	post("vb.brown~ by volker böhm");
-	
-	return 0;
+
 }
 
 

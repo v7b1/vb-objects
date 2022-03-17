@@ -36,7 +36,7 @@ void myObj_free(t_myObj *x);
 long check_inlet(t_myObj *x);
 
 
-int C74_EXPORT main(void) {
+void ext_main(void *r)  {
 	t_class *c;
 	c = class_new("vb.listchange", (method)myObj_new, (method)myObj_free, (short)sizeof(t_myObj),
 				  0L, A_DEFLONG, 0L);
@@ -49,7 +49,6 @@ int C74_EXPORT main(void) {
 	
 	post("vb.listchange, by volker böhm, 2013");
 	
-	return 0;
 }
 
 

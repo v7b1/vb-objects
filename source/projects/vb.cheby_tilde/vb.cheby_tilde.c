@@ -62,7 +62,7 @@ void myObj_assist(t_myObj *x, void *b, long m, long a, char *s);
 void *myObj_class;
 
 
-int C74_EXPORT main(void) {
+void ext_main(void *r)  {
 	t_class *c;
 
 	c = class_new("vb.cheby~", (method)myObj_new, (method)dsp_free, (short)sizeof(t_myObj), 0L, 
@@ -83,8 +83,7 @@ int C74_EXPORT main(void) {
 	myObj_class = c;
 	
 	post("vb.cheby~ by volker böhm, v.1.0.6");
-	
-	return 0;
+
 }
 
 

@@ -43,7 +43,7 @@ void *myObj_new(double lothresh, double hithresh, double gtime);
 void myObj_assist(t_myObj *x, void *b, long m, long a, char *s);
 
 
-int C74_EXPORT main(void) {
+void ext_main(void *r) {
 	t_class *c;
 	
 	c = class_new("vb.thresh~", (method)myObj_new, (method)dsp_free, (short)sizeof(t_myObj), 
@@ -62,7 +62,6 @@ int C74_EXPORT main(void) {
 	
 	post("vb.thresh~ by volker böhm");
 	
-	return 0;
 }
 
 

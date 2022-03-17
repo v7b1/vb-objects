@@ -48,7 +48,7 @@ void *myObj_new(double freq, long a);
 void myObj_assist(t_myObj *x, void *b, long m, long a, char *s);
 
 
-int C74_EXPORT main(void) {
+void ext_main(void *r)  {
 	t_class *c;
 	
 	c = class_new("vb.blit~", (method)myObj_new, (method)myObj_free, (short)sizeof(t_myObj), 
@@ -64,7 +64,6 @@ int C74_EXPORT main(void) {
 	
 	post("vb.blit~ by volker böhm, version 1.0.5 - http://vboehm.net");
 	
-	return 0;
 }
 
 

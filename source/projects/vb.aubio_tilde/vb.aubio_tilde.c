@@ -53,7 +53,7 @@ void myObj_assist(t_myObj *x, void *b, long m, long a, char *s);
 void *myObj_new( t_symbol *s, long argc, t_atom *argv);
 
 
-int C74_EXPORT main(void) {
+void ext_main(void *r)  {
 	t_class *c;
 	
 	c = class_new("vb.aubio~", (method)myObj_new, (method)myObj_free, (short)sizeof(t_myObj), 
@@ -103,8 +103,7 @@ int C74_EXPORT main(void) {
 	ps_buffer_modified = gensym("buffer_modified");
 	
 	post("vb.aubio~ using aubio 0.4.7 by Paul Brossier");
-	
-	return 0;
+
 }
 
 

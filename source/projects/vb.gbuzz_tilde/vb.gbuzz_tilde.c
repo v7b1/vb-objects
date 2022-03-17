@@ -53,7 +53,7 @@ void *myObj_new(double freq, double aa);
 void myObj_assist(t_myObj *x, void *b, long m, long a, char *s);
 
 
-int C74_EXPORT main(void) {
+void ext_main(void *r) {
 	t_class *c;
 	
 	c = class_new("vb.gbuzz~", (method)myObj_new, (method)myObj_free, (short)sizeof(t_myObj), 0L, 
@@ -68,7 +68,6 @@ int C74_EXPORT main(void) {
 	
     post("vb.gbuzz~ - https://vboehm.net");
 	
-	return 0;
 }
 
 

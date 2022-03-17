@@ -57,7 +57,7 @@ void *myObj_new( t_symbol *s, long argc, t_atom *argv);
 void myObj_assist(t_myObj *x, void *b, long m, long a, char *s);
 
 
-int C74_EXPORT main(void) {
+void ext_main(void *r)  {
 	t_class *c;
 	
 	c = class_new("vb.fourses~", (method)myObj_new, (method)dsp_free, (short)sizeof(t_myObj), 
@@ -79,7 +79,6 @@ int C74_EXPORT main(void) {
 	
 	post("vb.fourses~ by volker böhm\n");
 	
-	return 0;
 }
 
 
