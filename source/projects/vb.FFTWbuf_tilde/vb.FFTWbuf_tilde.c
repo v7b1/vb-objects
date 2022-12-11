@@ -273,22 +273,23 @@ void do_fft(t_myObj *x)
 			} 
 		}
 	}
+    
+    if(x->doCentroid) {
+        double centroid = 0;
+        t_atom cent;
+        
+        if (!x->magphas) {
+            spec[i][0] = sqrtf( spec[i][0] * spec[i][0] + spec[i][1] * spec[i][1] );
+        }
+        centroid = calcCentroid(spec, n2, sr);
+        atom_setfloat(&cent, centroid);
+        outlet_anything(x->outmess, sym_centroid, 1, &cent);
+    }
 	
 	buffer_setdirty( (t_object *)b);
 	
 	buffer_unlocksamples(b);
 	
-	if(x->doCentroid) {
-		double centroid = 0;
-		t_atom cent;
-		
-		if (!x->magphas) {
-			tab[i*nchnls+k] = sqrtf( spec[i][0] * spec[i][0] + spec[i][1] * spec[i][1] );
-		}
-		centroid = calcCentroid(spec, n2, sr);
-		atom_setfloat(&cent, centroid);
-		outlet_anything(x->outmess, sym_centroid, 1, &cent);
-	}
 	
 	// bang when finished processing
 	outlet_bang(x->outB);
@@ -398,10 +399,10 @@ float calcCentroid(fftwf_complex *spec, long n2, float sr) {
 		sum1 += (i*spec[i][0]);
 		sum2 += spec[i][0];
 	}
-	if(sum2 >= 0)
+	if(sum2 > 0.0f)
 		return basefreq * sum1 / sum2;
 	else
-		return 0.0;
+		return 0.0f;
 }
 
 
