@@ -8,21 +8,22 @@
 	based on descriptions of the 'fourses system' by ciat-lonbarde 
 	www.ciat-lonbarde.net
  
-	07.april 2013, volker böhm
+	07.april 2013, https://vboehm.net
+ 
+    ©2013, Volker Böhm
 */
 
 #define NUMFOURSES 4
+#define ONE_POLE(out, in, coeff) out += coeff * (in - out);
 
 void *myObj_class;
 
 typedef struct {
 	// this is a horse... basically a ramp generator
 	double		val;
-	double		inc;
-	double		dec;
+	double		inc, incy;
+	double		dec, decy;
 	double		adder;
-	double		incy, incym1;		// used for smoothing
-	double		decy, decym1;		// used for smoothing
 } t_horse;
 
 typedef struct {
@@ -45,8 +46,6 @@ void myObj_smooth(t_myObj *x, double input);
 void myObj_info(t_myObj *x);
 
 // DSP methods
-void myObj_dsp(t_myObj *x, t_signal **sp, short *count);
-t_int *myObj_perform(t_int *w);
 void myObj_dsp64(t_myObj *x, t_object *dsp64, short *count, double samplerate, 
 				 long maxvectorsize, long flags);
 void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins, 
@@ -62,7 +61,6 @@ void ext_main(void *r)  {
 	
 	c = class_new("vb.fourses~", (method)myObj_new, (method)dsp_free, (short)sizeof(t_myObj), 
 				  0L, A_GIMME, 0L);
-	class_addmethod(c, (method)myObj_dsp, "dsp", A_CANT, 0);
 	class_addmethod(c, (method)myObj_dsp64, "dsp64", A_CANT, 0);
 	class_addmethod(c, (method)myObj_smooth, "smooth", A_FLOAT, 0);	
 	class_addmethod(c, (method)myObj_hilim, "hilim", A_FLOAT, 0);
@@ -128,7 +126,6 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins,
 	int vs = sampleframes;	
 	t_horse *fourses = x->fourses;
 	double val, c, hilim, lolim;
-	int i, n;
 	
 	if (x->x_obj.z_disabled)
 		return;
@@ -137,106 +134,37 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins,
 	hilim = fourses[0].val;
 	lolim = fourses[5].val;
 	
-	for(i=0; i<vs; i++) 
+	for(int i=0; i<vs; i++)
 	 {
-		for(n=1; n<=NUMFOURSES; n++) {
+		for(int k=1; k<=NUMFOURSES; k++) {
 			// smoother
-			fourses[n].incy = fourses[n].inc*c + fourses[n].incym1*(1-c);
-			fourses[n].incym1 = fourses[n].incy;
+//			fourses[n].incy = fourses[n].inc*c + fourses[n].incym1*(1-c);
+//			fourses[n].incym1 = fourses[n].incy;
+//
+//			fourses[n].decy = fourses[n].dec*c + fourses[n].decym1*(1-c);
+//			fourses[n].decym1 = fourses[n].decy;
+            
+            ONE_POLE(fourses[k].incy, fourses[k].inc, c);
+            ONE_POLE(fourses[k].decy, fourses[k].dec, c);
 			
-			fourses[n].decy = fourses[n].dec*c + fourses[n].decym1*(1-c);
-			fourses[n].decym1 = fourses[n].decy;
-			
-			val = fourses[n].val;
-			val += fourses[n].adder;
+			val = fourses[k].val;
+			val += fourses[k].adder;
 
-			if(val <= fourses[n+1].val || val <= lolim ) {
-				fourses[n].adder = fourses[n].incy;
+			if(val <= fourses[k+1].val || val <= lolim ) {
+				fourses[k].adder = fourses[k].incy;
 			}
-			else if( val >= fourses[n-1].val || val >= hilim ) {
-				fourses[n].adder = fourses[n].decy;
+			else if( val >= fourses[k-1].val || val >= hilim ) {
+				fourses[k].adder = fourses[k].decy;
 			}
 		
-			output[n-1][i] = val;
+			output[k-1][i] = val;
 			
-			fourses[n].val = val;
+			fourses[k].val = val;
 		}
 	 }
 	
 	return;
 	
-}
-
-
-
-#pragma mark 32bit dsp-loop ------------------
-
-void myObj_dsp(t_myObj *x, t_signal **sp, short *count) 
-{	
-	dsp_add(myObj_perform, 6, x, sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec, sp[3]->s_vec, sp[0]->s_n);
-	
-	if(sp[0]->s_sr<=0) 
-		x->r_sr = 1.0/44100.0;
-	else x->r_sr = 1.0/sp[0]->s_sr;
-	
-	
-}
-
-
-t_int *myObj_perform(t_int *w) 
-{	
-	t_myObj *x = (t_myObj*)(w[1]);
-	float *out1 = (float *)(w[2]);
-	float *out2 = (float *)(w[3]);	
-	float *out3 = (float *)(w[4]);
-	float *out4 = (float *)(w[5]);	
-	int vs = (int)(w[6]);		
-	
-	if (x->x_obj.z_disabled)
-		goto out;
-	
-	t_horse *fourses = x->fourses;
-	double val, c, hilim, lolim;
-	int i, n;
-	
-	c = x->smoother;
-	hilim = fourses[0].val;
-	lolim = fourses[5].val;
-	
-	for(i=0; i<vs; i++) 
-	 {
-		for(n=1; n<=NUMFOURSES; n++) {
-			// smoother
-			fourses[n].incy = fourses[n].inc*c + fourses[n].incym1*(1-c);
-			fourses[n].incym1 = fourses[n].incy;
-			
-			fourses[n].decy = fourses[n].dec*c + fourses[n].decym1*(1-c);
-			fourses[n].decym1 = fourses[n].decy;
-			
-			val = fourses[n].val;
-			val += fourses[n].adder;
-			
-			if(val <= fourses[n+1].val || val <= lolim ) {
-				fourses[n].adder = fourses[n].incy;
-			}
-			else if( val >= fourses[n-1].val || val >= hilim ) {
-				fourses[n].adder = fourses[n].decy;
-			}
-			
-			fourses[n].val = val;
-		}
-		
-		out1[i] = fourses[1].val;
-		out2[i] = fourses[2].val;
-		out3[i] = fourses[3].val;
-		out4[i] = fourses[4].val;
-		 
-	 }
-	
-	
-out:
-	return w+7;	
-
 }
 
 
