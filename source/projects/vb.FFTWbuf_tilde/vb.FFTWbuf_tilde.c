@@ -263,7 +263,10 @@ void do_fft(t_myObj *x)
 		if(x->scale) {
 			for(i=0; i<n2; i++) {
 				tab[i*nchnls+k] = (spec[i][0] * scale);
-				tab[(i+n2)*nchnls+k] = (spec[i][1] * scale);	
+                if (!x->magphas)
+                    tab[(i+n2)*nchnls+k] = (spec[i][1] * scale);
+                else
+                    tab[(i+n2)*nchnls+k] = (spec[i][1]);
 			} 
 		}
 		else {
