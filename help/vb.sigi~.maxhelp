@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 1,
+			"minor" : 6,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 217.0, 140.0, 580.0, 633.0 ],
+		"rect" : [ 217.0, 140.0, 460.0, 618.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -113,13 +113,13 @@
 				"box" : 				{
 					"fontface" : 2,
 					"fontname" : "Arial",
-					"fontsize" : 36.0,
+					"fontsize" : 30.0,
 					"id" : "obj-8",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 87.0, 11.0, 172.0, 47.0 ],
-					"text" : "vb.meter~"
+					"patching_rect" : [ 147.0, 16.0, 111.0, 40.0 ],
+					"text" : "vb.sigi~"
 				}
 
 			}
@@ -131,8 +131,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 417.0, 535.0, 102.0, 19.0 ],
-					"text" : "http://vboehm.net"
+					"patching_rect" : [ 267.0, 535.0, 102.0, 19.0 ],
+					"text" : "https://vboehm.net"
 				}
 
 			}
@@ -156,6 +156,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
+					"parameter_enable" : 0,
 					"patching_rect" : [ 195.0, 423.0, 150.0, 21.0 ]
 				}
 
@@ -170,6 +171,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
+					"parameter_enable" : 0,
 					"patching_rect" : [ 195.0, 403.0, 150.0, 21.0 ]
 				}
 
@@ -184,6 +186,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
+					"parameter_enable" : 0,
 					"patching_rect" : [ 195.0, 384.0, 150.0, 21.0 ]
 				}
 
@@ -340,7 +343,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 4,
 					"numoutlets" : 0,
-					"patching_rect" : [ 389.0, 453.0, 111.0, 21.0 ],
+					"patching_rect" : [ 258.0, 498.0, 111.0, 21.0 ],
 					"text" : "bgcolor 200 200 200"
 				}
 
@@ -369,6 +372,20 @@
 					"patching_rect" : [ 86.0, 370.0, 86.0, 87.0 ],
 					"slide" : 0.75,
 					"threshold" : -60
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"angle" : 270.0,
+					"bgcolor" : [ 0.172549019607843, 0.925490196078431, 0.207843137254902, 1.0 ],
+					"id" : "obj-4",
+					"maxclass" : "panel",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 1.0, 11.0, 270.0, 75.0 ],
+					"proportion" : 0.5
 				}
 
 			}

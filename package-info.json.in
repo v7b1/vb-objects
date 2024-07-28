@@ -9,10 +9,6 @@
 			"platform" : [ "x64", "arm64" ],
 			"min_version" : "none"
 		},
-		"windows" : {
-			"platform" : [ "x64" ],
-			"min_version" : "none"
-		}
 	},
 	"package_extra" : { 
 		"reverse_domain" : "net.vboehm",
