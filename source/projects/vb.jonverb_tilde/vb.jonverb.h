@@ -26,6 +26,11 @@ typedef struct {
 	double lastout;
 } g_tapdelay;
 
+typedef struct {
+    double last_in;
+    double last_out;
+    double gain, coef;
+} g_dcblocker;
 
 
 g_damper *damper_make(double damping)
@@ -336,3 +341,10 @@ double tapdelay2_do_right(g_tapdelay *p, double x, double *outL, double *outR)
 }
 
 
+double dcblock_process(g_dcblocker *b, double input) {
+    double output = b->last_out;
+    output = (input - b->last_in) * b->gain + b->coef * output;
+    b->last_in = input;
+    b->last_out = output;
+    return output;
+}

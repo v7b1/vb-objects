@@ -32,6 +32,8 @@ typedef struct {
 	g_diffuser	**decayDiffusers2;
 	g_tapdelay	**tapdelays;
 	double		fbL, fbR, decay, erfl_gain, tail_gain;
+    double      dcblock_lastin, dcblock_lastout;
+    g_dcblocker dcblock[2];
 } t_myObj;
 
 
@@ -120,7 +122,7 @@ void myObj_set_damping(t_myObj *x, double a) {
 
 // middle inlet
 void myObj_set_decay(t_myObj *x, double a) {
-	x->decay = CLAMP(a, 0., 1.);
+	x->decay = CLAMP(a, 0., 1.1);
 }
 
 
@@ -150,6 +152,12 @@ void myObj_dsp64(t_myObj *x, t_object *dsp64, short *count, double samplerate,
 	
 }
 
+double SoftLimit(double in) {
+
+    double x2 = in*in;
+    return in * (27.0 + x2) / (27.0 + 9.0 * x2);
+}
+
 
 void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins, double **outs, 
 					 long numouts, long sampleframes, long flags, void *userparam){
@@ -177,13 +185,14 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins, dou
 	g_diffuser **decayDiffs1 = x->decayDiffusers1;
 	g_diffuser **decayDiffs2 = x->decayDiffusers2;
 	g_tapdelay **tapDelays = x->tapdelays;
+    g_dcblocker *dcblock = x->dcblock;
 	
 	// kick in some noise to keep denormals away
-	i=0;
-	while(i<vs) {
-		in[i] += DBL_EPSILON;
-		i += NOISEINJECT;
-	}
+//	i=0;
+//	while(i<vs) {
+//		in[i] += DBL_EPSILON;
+//		i += NOISEINJECT;
+//	}
 	
 	damper_do_block(inputDamper, in, vs);				// input damping
 	
@@ -218,12 +227,17 @@ void myObj_perform64(t_myObj *x, t_object *dsp64, double **ins, long numins, dou
 		// second fixed delay with tap outputs
 		fbL = tapdelay2_do_left(tapDelays[2], fbL, &sumL, &sumR);
 		fbR = tapdelay2_do_right(tapDelays[3], fbR, &sumL, &sumR);
+         
+         fbL = dcblock_process(&dcblock[0], fbL);
+         fbR = dcblock_process(&dcblock[1], fbR);
 		
+        fbL = SoftLimit(fbL);
+        fbR = SoftLimit(fbR);
 		
 		// levels and output
 		input *= erfl_gain;
-		*(outL++) = sumL*tail_gain + input;
-		*(outR++) = sumR*tail_gain + input;
+         *(outL++) = sumL*tail_gain + input;
+         *(outR++) = sumR*tail_gain - input;
 		
 		
 		// cross channel feedback
@@ -344,6 +358,17 @@ void *myObj_new(t_symbol *s, long argc, t_atom *argv)
 		x->decayDiffusers2[1] = diffuser_make(4096, difftaps7, -0.5);
 		
 		x->fbL = x->fbR = 0.;
+        
+        double coef = 0.995;
+        double gain = (coef + 1.0) * 0.5;
+        x->dcblock[0].last_in = 0.0;
+        x->dcblock[0].last_out = 0.0;
+        x->dcblock[0].gain = gain;
+        x->dcblock[0].coef = coef;
+        x->dcblock[1].last_in = 0.0;
+        x->dcblock[1].last_out = 0.0;
+        x->dcblock[1].gain = gain;
+        x->dcblock[1].coef = coef;
 		
 		
 		// ----- parse arguments: first arg --> "decay", second arg --> "damping" 
